@@ -1,0 +1,50 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<div class="mb-8" aria-label="Filtros por tag">
+  <div class="flex flex-wrap gap-2" data-project-filters>
+    <button class="focus-ring rounded-md border border-[var(--border)] px-3 py-1.5 text-sm" data-filter="all" aria-pressed="true">
+      All
+    </button>
+    {
+      tags.map((tag) => (
+        <button class="focus-ring rounded-md border border-[var(--border)] px-3 py-1.5 text-sm" data-filter={tag} aria-pressed="false">
+          {tag}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const filterRoot = document.querySelector("[data-project-filters]");
+  const cards = Array.from(document.querySelectorAll("[data-project-card]"));
+
+  if (filterRoot && cards.length) {
+    filterRoot.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLButtonElement)) return;
+      const selectedTag = target.dataset.filter || "all";
+      const buttons = filterRoot.querySelectorAll("button");
+
+      buttons.forEach((button) => {
+        const isActive = button === target;
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("bg-[var(--brand)]", isActive);
+        button.classList.toggle("text-white", isActive);
+      });
+
+      cards.forEach((card) => {
+        const tagList = (card.getAttribute("data-tags") || "").split(",");
+        const visible = selectedTag === "all" || tagList.includes(selectedTag);
+        card.classList.toggle("hidden", !visible);
+      });
+    });
+  }
+</script>
+

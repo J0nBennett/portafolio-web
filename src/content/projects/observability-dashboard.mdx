@@ -1,0 +1,32 @@
+---
+title: "Observability Dashboard"
+slug: "observability-dashboard"
+summary: "Resuelve falta de visibilidad operativa al correlacionar errores, latencia y despliegues para decidir con evidencia cuándo escalar incidentes."
+tags: ["observability", "devops", "reliability", "web"]
+stack: ["Grafana", "Prometheus", "Loki", "Node.js", "Docker"]
+links:
+  repo: "https://github.com/username/observability-dashboard"
+  demo: "https://username.github.io/observability-dashboard"
+thumbnail: "/images/thumbs/observability-dashboard.png"
+featured: false
+date: 2025-10-22
+---
+
+## Problem
+El equipo veía métricas aisladas: errores por un lado, latencia por otro y cambios de release sin contexto unificado.
+
+## Solution
+Se construyó un dashboard operativo que cruza señales de aplicación y despliegue en vistas por servicio y entorno.
+
+## What I did
+- Definí métricas mínimas por servicio (latencia p95, tasa de error, saturación).
+- Diseñé paneles con foco en diagnóstico, no solo monitoreo decorativo.
+- Incorporé eventos de deploy para relacionar degradaciones con cambios recientes.
+- Ajusté alertas para reducir ruido y mejorar tiempo de reacción.
+
+## Why it matters
+Mejora la calidad de decisiones en incidentes y evita que los equipos reaccionen tarde o con señales incompletas.
+
+## Human vs AI contribution
+- Human: selección de SLOs y umbrales operativos.
+- AI: soporte en consultas base y estructura inicial de paneles.

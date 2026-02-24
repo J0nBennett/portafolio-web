@@ -1,0 +1,32 @@
+---
+title: "API Regression Pipeline"
+slug: "api-regression-pipeline"
+summary: "Resuelve el riesgo de romper contratos API entre equipos al validar compatibilidad de endpoints en cada pull request antes de mergear."
+tags: ["automation", "testing", "api", "ci"]
+stack: ["Node.js", "TypeScript", "Playwright", "OpenAPI", "GitHub Actions"]
+links:
+  repo: "https://github.com/username/api-regression-pipeline"
+  demo: "https://username.github.io/api-regression-pipeline"
+thumbnail: "/images/thumbs/api-regression-pipeline.png"
+featured: true
+date: 2026-01-18
+---
+
+## Problem
+Cambios en payloads y códigos de respuesta llegaban a integración sin detección temprana. El costo aparecía tarde: retrabajo en frontend, bugs en staging y releases demorados.
+
+## Solution
+El proyecto define una suite de regresión API basada en contratos OpenAPI versionados. Cada PR ejecuta smoke checks y validaciones de compatibilidad para detectar breaking changes antes de aprobar.
+
+## What I did
+- Diseñé la estrategia de pruebas por criticidad de endpoint.
+- Modelé validaciones reutilizables para status codes, esquemas y reglas de negocio básicas.
+- Integré ejecución y reporte en GitHub Actions con artefactos por PR.
+- Documenté criterios de falla para que QA, backend y frontend hablen el mismo idioma.
+
+## Why it matters
+Convierte la calidad API en una señal objetiva de CI, reduce discusiones subjetivas de release y evita que errores de contrato lleguen a ambientes tardíos.
+
+## Human vs AI contribution
+- Human: diseño de cobertura, priorización de riesgos y definición de criterios de aceptación.
+- AI: soporte para plantillas iniciales de casos y estructura de documentación.

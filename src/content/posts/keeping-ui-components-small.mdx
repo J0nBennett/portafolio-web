@@ -1,0 +1,42 @@
+---
+title: "Keeping UI Components Small and Reliable"
+slug: "keeping-ui-components-small-and-reliable"
+summary: "Cómo mantener componentes frontend pequeños sin perder capacidad de evolución."
+tags: ["frontend", "architecture", "web"]
+date: 2025-12-14
+---
+
+Un componente grande casi nunca nace grande. Crece cuando recibe responsabilidades que no le corresponden: validaciones de negocio, fetch de datos, formateos complejos y estados que deberían vivir en otro lugar.
+
+Cuando eso pasa, el equipo deja de razonar por piezas y empieza a "tocar con cuidado" porque todo está acoplado.
+
+## Principio base
+Un componente de UI debería responder a una pregunta simple: **¿cómo se presenta este estado?**
+
+Si además decide reglas de dominio, ya no es solo UI.
+
+## Señales de que un componente está inflado
+- Tiene demasiadas props opcionales para cubrir variantes de negocio.
+- Mezcla rendering, side effects y lógica de transformación.
+- Cambiar una parte rompe otra no relacionada.
+
+## Prácticas que me funcionan
+### 1) Separar data-shaping de rendering
+Normalizo datos antes de llegar al componente. El componente recibe datos listos para mostrar.
+
+### 2) API explícita y corta
+Prefiero props claras y pocas variantes. Si aparecen excepciones constantes, creo un wrapper específico.
+
+### 3) Estados de UI bien definidos
+`loading`, `empty`, `error`, `ready` deberían ser estados explícitos y testeables.
+
+### 4) Composición sobre configuración excesiva
+En vez de un componente "universal" con 30 props, prefiero componer piezas pequeñas.
+
+## Resultado práctico
+- Menos regresiones al cambiar UI.
+- Onboarding más rápido para nuevos developers.
+- Tests más directos porque cada pieza tiene una responsabilidad clara.
+
+## Cierre
+Componentes pequeños no son un fin estético. Son una decisión de ingeniería para sostener velocidad de entrega sin comprometer mantenibilidad.

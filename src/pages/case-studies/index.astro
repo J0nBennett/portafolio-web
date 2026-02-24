@@ -1,0 +1,53 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/layout/Container.astro";
+import SectionTitle from "../../components/ui/SectionTitle.astro";
+import Card from "../../components/ui/Card.astro";
+import { withBasePath } from "../../utils/url";
+
+const studies = (await getCollection("case-studies")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const basePath = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Case Studies | Portfolio"
+  description="Case studies con decisiones técnicas y resultados."
+  image="/og/case-studies.png"
+>
+  <Container className="py-14">
+    <SectionTitle
+      as="h1"
+      title="Case Studies"
+      subtitle="Análisis de contexto, decisiones técnicas y resultados medibles."
+    />
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        studies.map((study) => (
+          <Card>
+            {study.data.thumbnail && (
+              <img
+                src={withBasePath(study.data.thumbnail, basePath)}
+                alt={`${study.data.title} thumbnail`}
+                class="mb-4 h-32 w-full rounded-lg border border-[var(--border)] object-cover"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="630"
+              />
+            )}
+            <p class="text-xs text-[var(--muted)]">{study.data.date.toLocaleDateString("en-US")}</p>
+            <h3 class="mt-2 text-lg font-semibold">
+              <a class="focus-ring hover:underline" href={withBasePath(`/case-studies/${study.slug}/`, basePath)}>
+                {study.data.title}
+              </a>
+            </h3>
+            <p class="mt-3 text-sm text-[var(--muted)]">{study.data.summary}</p>
+          </Card>
+        ))
+      }
+    </div>
+  </Container>
+</BaseLayout>

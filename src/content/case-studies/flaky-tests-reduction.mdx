@@ -1,0 +1,70 @@
+---
+title: "Reducing Flaky Tests in CI"
+slug: "reducing-flaky-tests-in-ci"
+summary: "Cómo pasamos de un pipeline E2E ruidoso a señales de calidad confiables para liberar con menos retrabajo."
+tags: ["qa", "ci", "reliability", "automation"]
+thumbnail: "/images/thumbs/reducing-flaky-tests-in-ci.png"
+date: 2025-11-02
+---
+
+## Context
+El equipo tenía una suite E2E grande que aportaba cobertura, pero cada semana aparecían fallos intermitentes difíciles de reproducir. El resultado era una dinámica conocida: reruns manuales, pérdida de confianza en CI y discusiones sobre si un release estaba realmente listo.
+
+## Problem
+La principal dificultad no era "que falle un test", sino no saber si la falla representaba un riesgo real o ruido de infraestructura/datos. Esa incertidumbre afectaba dos frentes:
+- Decisiones de release lentas por falta de señales confiables.
+- Tiempo técnico desperdiciado en depuración de falsos positivos.
+
+## Technical decisions and trade-offs
+1. **Clasificación por criticidad y estabilidad**
+   - Decisión: separar tests en `smoke-blocking`, `regression` y `non-blocking`.
+   - Trade-off: menor cobertura en la puerta principal al inicio.
+   - Motivo: primero recuperar confianza en señales; después expandir cobertura.
+
+2. **Aislamiento de dependencias externas**
+   - Decisión: reemplazar llamadas volátiles por dobles de prueba contractuales en flujos no críticos.
+   - Trade-off: menor realismo en algunos caminos.
+   - Motivo: evitar que fallas de terceros oculten regresiones propias.
+
+3. **Política explícita de reintento**
+   - Decisión: retries limitados solo en suites no bloqueantes y con logging obligatorio de causa.
+   - Trade-off: pipelines algo más largos en ciertos casos.
+   - Motivo: evitar "maquillar" inestabilidad con retries globales.
+
+4. **Métrica de flakiness como señal de equipo**
+   - Decisión: publicar porcentaje de tests inestables por módulo en dashboard semanal.
+   - Trade-off: exposición de deuda técnica.
+   - Motivo: convertir un problema difuso en backlog priorizable.
+
+## Architecture
+El flujo final quedó en tres capas:
+
+```text
+PR Pipeline
+  -> Smoke (blocking, <=10 min)
+  -> Contract checks (blocking)
+  -> Regression E2E (non-blocking report)
+
+Nightly Pipeline
+  -> Full regression
+  -> Flakiness analysis
+  -> Trend report to engineering channel
+```
+
+Además, cada fallo relevante se guarda con evidencia mínima: video/screenshot, request-response y contexto del entorno.
+
+## Results
+No se inventaron métricas absolutas; el impacto se evaluó de forma cualitativa y operativa:
+- Menos reruns manuales en revisiones de PR.
+- Mayor claridad para decidir si bloquear o continuar un release.
+- Mejor conversación entre QA y desarrollo porque los fallos tenían evidencia accionable.
+
+## Lessons learned
+- Flakiness no se corrige solo con "mejores tests"; requiere arquitectura de pipeline.
+- Las suites bloqueantes deben ser pequeñas y altamente confiables.
+- Retries sin observabilidad crean falsa sensación de estabilidad.
+- Medir inestabilidad por módulo ayuda más que discutir casos aislados.
+
+## What I would improve next
+- Integrar trazas distribuidas para acortar diagnóstico entre front y backend.
+- Formalizar budgets de estabilidad por dominio para prevenir regresión de calidad en el tiempo.

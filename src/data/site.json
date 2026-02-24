@@ -1,0 +1,79 @@
+{
+  "siteName": "Jony Sosa | Engineering Portfolio",
+  "description": "Portfolio técnico enfocado en calidad de software, automatización y entrega confiable. Documenta decisiones de ingeniería, trade-offs y resultados reales.",
+  "baseUrl": "https://username.github.io",
+  "author": "Jony Sosa",
+  "location": "Remoto, LATAM",
+  "roles": [
+    "QA Engineer",
+    "Automation Engineer",
+    "Software Engineer"
+  ],
+  "focusAreas": [
+    "Test Automation",
+    "CI/CD Quality Gates",
+    "Web Quality",
+    "Observability"
+  ],
+  "tagline": "Diseño estrategias de calidad y automatización que reducen riesgo de release sin frenar entrega.",
+  "email": "jonys@example.com",
+  "home": {
+    "primaryCta": {
+      "label": "Explorar proyectos",
+      "href": "/projects"
+    },
+    "secondaryCta": {
+      "label": "Leer case studies",
+      "href": "/case-studies"
+    },
+    "differentiators": [
+      "Claridad antes que complejidad accidental.",
+      "Trade-offs explícitos para decidir con criterio.",
+      "Calidad sostenible como parte del delivery, no una fase final.",
+      "Automatización pragmática: menos ruido, más señal."
+    ],
+    "highlights": [
+      {
+        "label": "Entregables documentados",
+        "value": "15+"
+      },
+      {
+        "label": "Años construyendo calidad",
+        "value": "5"
+      },
+      {
+        "label": "Especialidad",
+        "value": "Automation + CI"
+      }
+    ]
+  },
+  "about": {
+    "bio": "Soy ingeniero orientado a calidad y automatización. Trabajo en el punto donde producto, desarrollo y testing se alinean para entregar software confiable.",
+    "problemsSolved": "Me enfoco en problemas de releases inestables, suites de pruebas frágiles, falta de visibilidad en CI y procesos de validación poco escalables.",
+    "engineeringApproach": "Pienso la calidad como un sistema: criterios explícitos, señales confiables y feedback temprano. Prefiero soluciones simples, observables y auditables sobre automatización opaca.",
+    "values": [
+      "Claridad técnica",
+      "Trade-offs explícitos",
+      "Automatización con propósito",
+      "Mantenibilidad a largo plazo",
+      "Responsabilidad de extremo a extremo"
+    ],
+    "timeline": [
+      {
+        "period": "2024 - Actualidad",
+        "title": "Senior QA Automation Engineer",
+        "summary": "Defino estrategia de calidad, estabilizo pipelines y mejoro señales de release para equipos cross-funcionales."
+      },
+      {
+        "period": "2022 - 2024",
+        "title": "Software Engineer",
+        "summary": "Construcción de productos web con foco en performance, claridad de arquitectura y evolución sostenible."
+      },
+      {
+        "period": "2020 - 2022",
+        "title": "QA Engineer",
+        "summary": "Implementación de automatización funcional y adopción de estándares de calidad en equipos de producto."
+      }
+    ]
+  }
+}

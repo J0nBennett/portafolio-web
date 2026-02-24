@@ -1,0 +1,19 @@
+[
+  {
+    "category": "Backend & APIs",
+    "items": ["Node.js", "REST", "Contract Testing", "SQL"]
+  },
+  {
+    "category": "Frontend & UX",
+    "items": ["Astro", "TailwindCSS", "Accessibility", "Performance"]
+  },
+  {
+    "category": "QA & Automation",
+    "items": ["Playwright", "Cypress", "API Testing", "Test Strategy"]
+  },
+  {
+    "category": "DevOps",
+    "items": ["GitHub Actions", "Docker", "CI/CD", "Observability"]
+  }
+]
+

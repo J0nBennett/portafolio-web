@@ -1,0 +1,28 @@
+---
+import Container from "./Container.astro";
+import socials from "../../data/socials.json";
+import site from "../../data/site.json";
+---
+
+<footer class="mt-20 border-t border-[var(--border)]">
+  <Container className="flex flex-col gap-4 py-8 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
+    <p>&copy; {new Date().getFullYear()} {site.author}. All rights reserved.</p>
+    <ul class="flex items-center gap-4">
+      {
+        socials.map((social) => (
+          <li>
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              class="focus-ring hover:text-[var(--text)] transition-colors"
+            >
+              {social.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</footer>
+

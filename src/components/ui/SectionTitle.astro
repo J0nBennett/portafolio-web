@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  as?: "h1" | "h2";
+}
+
+const { title, subtitle, as = "h2" } = Astro.props as Props;
+const HeadingTag = as;
+---
+
+<div class="mb-8">
+  <HeadingTag class="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</HeadingTag>
+  {subtitle && <p class="mt-2 max-w-2xl text-[var(--muted)]">{subtitle}</p>}
+</div>

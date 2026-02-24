@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from "astro:content";
+import DocLayout from "../../layouts/DocLayout.astro";
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection("case-studies");
+  return caseStudies.map((caseStudy) => ({
+    params: { slug: caseStudy.slug },
+    props: { caseStudy },
+  }));
+}
+
+const { caseStudy } = Astro.props;
+const { Content } = await render(caseStudy);
+---
+
+<DocLayout
+  title={caseStudy.data.title}
+  summary={caseStudy.data.summary}
+  tags={caseStudy.data.tags}
+  date={caseStudy.data.date}
+  image={caseStudy.data.thumbnail}
+  sectionOgImage="/og/case-studies.png"
+>
+  <Content />
+</DocLayout>

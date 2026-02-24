@@ -1,0 +1,37 @@
+---
+title: "SEO Defaults for Static Sites"
+slug: "seo-defaults-for-static-sites"
+summary: "Una guía práctica para dejar SEO correcto por defecto en un sitio estático profesional."
+tags: ["seo", "astro", "web", "ssg"]
+date: 2025-10-03
+---
+
+En proyectos técnicos, SEO suele tratarse al final. El resultado típico: páginas sin canonical, OpenGraph incompleto y metadatos inconsistentes.
+
+En sitios SSG, esto se evita si el setup inicial define estándares claros.
+
+## 1) Lo mínimo que no debería faltar
+- `title` y `description` por página.
+- `canonical` calculado de forma consistente.
+- OpenGraph y Twitter cards con imagen válida.
+- `sitemap` generado automáticamente.
+- `robots.txt` alineado con la URL pública.
+
+## 2) Centralizar en layout, no repetir en cada página
+La mejor decisión es encapsular metadata en un componente SEO usado por el layout base. Así:
+- Se evitan olvidos en páginas nuevas.
+- Cambios globales se hacen una sola vez.
+- La revisión técnica de SEO es más simple.
+
+## 3) Error frecuente en GitHub Pages
+No considerar `base path` cuando el sitio vive en `username.github.io/repo`. Esto rompe canonical y assets.
+
+Recomendación:
+- Resolver `SITE_URL` y `BASE_PATH` en CI.
+- Hacer que la config del framework consuma esas variables en build.
+
+## 4) SEO y performance van juntos
+Un HTML semántico, CSS liviano y poco JavaScript mejoran tanto UX como discoverability. SEO no es solo metadata; también es calidad de entrega.
+
+## Cierre
+Cuando SEO viene "de fábrica" en la arquitectura, el equipo se enfoca en contenido y evita deuda técnica invisible.

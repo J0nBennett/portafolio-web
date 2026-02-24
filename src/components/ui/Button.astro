@@ -1,0 +1,27 @@
+---
+interface Props {
+  href: string;
+  variant?: "primary" | "secondary";
+  target?: string;
+  rel?: string;
+}
+
+const { href, variant = "primary", target, rel } = Astro.props;
+import { withBasePath } from "../../utils/url";
+
+const resolvedHref = withBasePath(href, import.meta.env.BASE_URL);
+
+const classes = {
+  primary: "bg-[var(--brand)] text-white hover:opacity-90",
+  secondary: "border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--muted)]",
+};
+---
+
+<a
+  href={resolvedHref}
+  target={target}
+  rel={rel}
+  class={`focus-ring inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition ${classes[variant]}`}
+>
+  <slot />
+</a>

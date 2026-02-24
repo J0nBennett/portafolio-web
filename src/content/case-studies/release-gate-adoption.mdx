@@ -1,0 +1,66 @@
+---
+title: "Adoption of Release Readiness Gate"
+slug: "adoption-of-release-readiness-gate"
+summary: "Diseño y adopción de una compuerta de release para pasar de aprobaciones subjetivas a decisiones de entrega auditables."
+tags: ["release", "quality", "automation", "devops"]
+thumbnail: "/images/thumbs/adoption-of-release-readiness-gate.png"
+date: 2025-06-30
+---
+
+## Context
+El proceso de release dependía de revisiones manuales y criterios distintos por equipo. QA podía considerar un build apto, mientras desarrollo o producto pedían validaciones adicionales sin una regla común. Esto no solo retrasaba entregas: también dificultaba aprender de errores porque la decisión no quedaba trazada.
+
+## Problem
+No había una definición operativa de "ready for production". La ausencia de criterios compartidos generaba:
+- Bloqueos tardíos por hallazgos que pudieron detectarse antes.
+- Aprobaciones inconsistentes entre releases similares.
+- Falta de evidencia para explicar por qué se liberó o se frenó un cambio.
+
+## Technical decisions and trade-offs
+1. **Definir un mínimo común de calidad**
+   - Decisión: introducir un conjunto pequeño de reglas obligatorias (smoke crítico, defects severidad alta abiertos, estado de migraciones y rollback path).
+   - Trade-off: al inicio algunas squads sintieron pérdida de flexibilidad.
+   - Motivo: sin piso común, no hay consistencia entre releases.
+
+2. **Salida de gate por estados, no binaria simple**
+   - Decisión: `pass`, `conditional pass`, `fail`.
+   - Trade-off: requiere disciplina para no abusar de `conditional pass`.
+   - Motivo: reflejar mejor la realidad operativa sin frenar todo cambio menor.
+
+3. **Evidencia obligatoria en artefactos de CI**
+   - Decisión: cada validación publica evidencia (logs, resumen de pruebas, defectos enlazados).
+   - Trade-off: más trabajo inicial de integración.
+   - Motivo: decisiones auditables y trazables.
+
+4. **Adopción gradual por dominios**
+   - Decisión: comenzar con servicios de mayor impacto y luego expandir.
+   - Trade-off: durante transición convivieron dos modelos.
+   - Motivo: reducir resistencia y ajustar reglas con feedback real.
+
+## Architecture
+```text
+Release Candidate
+  -> Validate smoke suite
+  -> Check open high-severity defects
+  -> Verify migration/rollback checklist
+  -> Generate readiness report
+  -> Emit gate status (pass | conditional pass | fail)
+```
+
+El reporte final se publica como artefacto de CI y referencia explícita en la aprobación de release.
+
+## Results
+Resultados observados (cualitativos y de proceso):
+- Menos discusiones subjetivas en comités de release.
+- Mejor velocidad para detectar qué condición bloquea una entrega.
+- Mayor responsabilidad compartida entre QA, desarrollo y producto.
+
+## Lessons learned
+- Un gate funciona cuando es simple de entender y difícil de manipular.
+- La evidencia importa más que la cantidad de checks.
+- La adopción gradual permite ajustar reglas sin romper flujo de entrega.
+- `Conditional pass` necesita gobernanza explícita para no vaciar el estándar.
+
+## What I would improve next
+- Añadir score de riesgo técnico por release para complementar el estado del gate.
+- Automatizar seguimiento de excepciones (`conditional pass`) con fecha de expiración y owner.

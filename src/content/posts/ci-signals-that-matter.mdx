@@ -1,0 +1,36 @@
+---
+title: "CI Signals That Actually Matter"
+slug: "ci-signals-that-actually-matter"
+summary: "Qué señales de CI uso para decidir releases con menos ruido y más criterio técnico."
+tags: ["ci", "quality", "testing", "engineering"]
+date: 2025-07-27
+---
+
+Cuando un pipeline crece, la pregunta deja de ser "¿tenemos muchas métricas?" y pasa a ser "¿qué señales realmente cambian una decisión?".
+
+En varios equipos vi el mismo patrón: dashboards extensos, pero poca claridad al momento de aprobar un release. El problema no es la falta de datos; es la falta de jerarquía entre señales.
+
+## 1) Señales de salud de release que sí priorizo
+- **Estabilidad de suites críticas**: si smoke y flujos core fallan de forma no explicada, no hay release.
+- **Defectos severos abiertos**: un bug crítico conocido pesa más que diez métricas cosméticas en verde.
+- **Tiempo de recuperación**: si la recuperación ante falla tarda demasiado, el riesgo operativo sube.
+
+## 2) Señales útiles pero no bloqueantes
+- Cobertura incremental por módulo.
+- Tendencia de flakiness semanal.
+- Duración media de pipeline.
+
+Estas señales guían mejoras de ingeniería, pero no siempre deben frenar entrega.
+
+## 3) Error común: mezclar diagnóstico con decisión
+Muchas organizaciones usan el mismo panel para monitorear y para decidir release. Eso genera ambigüedad. Mi práctica es separar:
+- **Gate de release**: pocas reglas, explícitas y auditables.
+- **Observabilidad de calidad**: métricas más ricas para mejora continua.
+
+## 4) Cómo implementarlo sin burocracia
+1. Definir 3-5 reglas bloqueantes máximo.
+2. Publicar evidencia por regla en CI.
+3. Revisar reglas cada 6-8 semanas para evitar obsolescencia.
+
+## Cierre
+La madurez de CI no se mide por cantidad de checks, sino por su capacidad de reducir incertidumbre en decisiones de entrega.

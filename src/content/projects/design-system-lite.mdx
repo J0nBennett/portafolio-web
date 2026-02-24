@@ -1,0 +1,32 @@
+---
+title: "Design System Lite"
+slug: "design-system-lite"
+summary: "Resuelve inconsistencia visual y deuda de accesibilidad creando componentes base reutilizables con contratos claros para equipos frontend."
+tags: ["web", "frontend", "a11y", "ui"]
+stack: ["Astro", "TailwindCSS", "TypeScript", "Storybook"]
+links:
+  repo: "https://github.com/username/design-system-lite"
+  demo: "https://username.github.io/design-system-lite"
+thumbnail: "/images/thumbs/design-system-lite.png"
+featured: true
+date: 2025-12-05
+---
+
+## Problem
+Las interfaces se construían rápido pero con variaciones de spacing, estados y contraste. Cada feature introducía estilos duplicados y más costo de mantenimiento.
+
+## Solution
+Se creó un set de componentes base con API explícita (Button, Card, Badge, forms) y reglas de accesibilidad incluidas desde el diseño.
+
+## What I did
+- Definí límites de responsabilidad por componente para evitar lógica de negocio en UI.
+- Establecí tokens de espaciado, tipografía y color mínimos para mantener coherencia.
+- Documenté casos de uso y anti-patrones para acelerar onboarding.
+- Agregué checklist de accesibilidad (focus visible, labels, navegación por teclado).
+
+## Why it matters
+Reduce fricción de entrega, evita regresiones visuales y hace que el frontend escale con menos reescritura.
+
+## Human vs AI contribution
+- Human: diseño del sistema, decisiones de API y revisión de accesibilidad.
+- AI: apoyo para drafts de documentación y detección de estilos repetidos.
