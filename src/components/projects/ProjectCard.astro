@@ -26,41 +26,73 @@ const { project, slug } = Astro.props;
 const basePath = import.meta.env.BASE_URL;
 ---
 
-<Card className="h-full">
-  <div class="flex h-full flex-col gap-4">
-    {project.thumbnail && (
-        <img
-        src={withBasePath(project.thumbnail, basePath)}
-        alt={`${project.title} thumbnail`}
-        class="h-36 w-full rounded-lg border border-[var(--border)] object-cover"
-        loading="lazy"
-        decoding="async"
-        width="1200"
-        height="630"
-      />
-    )}
-    <div class="flex items-center justify-between gap-3">
-      <h3 class="text-lg font-semibold">
-        <a class="focus-ring hover:underline" href={withBasePath(`/projects/${slug}/`, basePath)}>{project.title}</a>
-      </h3>
-      {project.featured && <Badge label="Featured" />}
+<div class="group perspective-1000">
+  <Card className="h-full transition-transform duration-300 group-hover:scale-[1.02]">
+    <div class="flex h-full flex-col gap-4">
+      {project.thumbnail && (
+        <div class="relative overflow-hidden rounded-lg">
+          <img
+            src={withBasePath(project.thumbnail, basePath)}
+            alt={`${project.title} thumbnail`}
+            class="h-36 w-full border border-white/[0.06] object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+            width="1200"
+            height="630"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-lg"></div>
+        </div>
+      )}
+      <div class="flex items-center justify-between gap-3">
+        <h3 class="text-lg font-semibold text-[var(--text-heading)]">
+          <a
+            class="focus-ring transition-colors duration-200 hover:text-cyan-400"
+            href={withBasePath(`/projects/${slug}/`, basePath)}
+          >
+            {project.title}
+          </a>
+        </h3>
+        {project.featured && <Badge label="Featured" />}
+      </div>
+      <p class="text-sm text-[var(--muted)] leading-relaxed">{project.summary}</p>
+      <ul class="flex flex-wrap gap-2">
+        {
+          project.tags.map((tag) => (
+            <li class="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-1 text-xs text-[var(--muted)] transition-colors hover:border-cyan-500/20 hover:text-cyan-400">
+              {tag}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-auto text-xs text-[var(--muted)]">
+        <span class="text-cyan-500/60">Stack:</span> {project.stack.join(" • ")}
+      </p>
+      <div class="flex gap-4 text-sm">
+        <a
+          href={project.links.repo}
+          target="_blank"
+          rel="noreferrer"
+          class="focus-ring group/link inline-flex items-center gap-1 text-[var(--muted)] transition-colors hover:text-cyan-400"
+        >
+          Repo
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
+            <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+          </svg>
+        </a>
+        {project.links.demo && (
+          <a
+            href={project.links.demo}
+            target="_blank"
+            rel="noreferrer"
+            class="focus-ring group/link inline-flex items-center gap-1 text-[var(--muted)] transition-colors hover:text-cyan-400"
+          >
+            Demo
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
+              <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+            </svg>
+          </a>
+        )}
+      </div>
     </div>
-    <p class="text-sm text-[var(--muted)]">{project.summary}</p>
-    <ul class="flex flex-wrap gap-2">
-      {
-        project.tags.map((tag) => (
-          <li class="rounded-md bg-neutral-100 px-2 py-1 text-xs text-neutral-700">{tag}</li>
-        ))
-      }
-    </ul>
-    <p class="mt-auto text-xs text-[var(--muted)]">Stack: {project.stack.join(" • ")}</p>
-    <div class="flex gap-4 text-sm">
-      <a href={project.links.repo} target="_blank" rel="noreferrer" class="focus-ring hover:underline">
-        Repo
-      </a>
-      <a href={project.links.demo} target="_blank" rel="noreferrer" class="focus-ring hover:underline">
-        Demo
-      </a>
-    </div>
-  </div>
-</Card>
+  </Card>
+</div>

@@ -1,19 +1,47 @@
 [
   {
-    "category": "Backend & APIs",
-    "items": ["Node.js", "REST", "Contract Testing", "SQL"]
-  },
-  {
-    "category": "Frontend & UX",
-    "items": ["Astro", "TailwindCSS", "Accessibility", "Performance"]
-  },
-  {
     "category": "QA & Automation",
-    "items": ["Playwright", "Cypress", "API Testing", "Test Strategy"]
+    "items": [
+      "Playwright",
+      "Postman",
+      "Newman",
+      "JMeter",
+      "Katalon Studio",
+      "SoapUI",
+      "Test Architecture"
+    ]
   },
   {
-    "category": "DevOps",
-    "items": ["GitHub Actions", "Docker", "CI/CD", "Observability"]
+    "category": "AI Stack & Workflows",
+    "items": [
+      "Claude",
+      "ChatGPT",
+      "GitHub Copilot",
+      "MCP (Model Context Protocol)",
+      "AI-assisted QA",
+      "Prompt Engineering"
+    ]
+  },
+  {
+    "category": "Development & DB",
+    "items": [
+      "Oracle APEX",
+      "PL/SQL",
+      "Python",
+      "JavaScript",
+      "SQL",
+      "React (Learning)"
+    ]
+  },
+  {
+    "category": "DevOps & Tools",
+    "items": [
+      "CI/CD Pipelines",
+      "Git",
+      "GitHub Actions",
+      "GitLab",
+      "Linux",
+      "Docker"
+    ]
   }
 ]
-

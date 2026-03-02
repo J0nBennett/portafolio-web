@@ -1,15 +1,22 @@
 [
   {
-    "label": "GitHub",
-    "href": "https://github.com/username"
-  },
-  {
     "label": "LinkedIn",
-    "href": "https://linkedin.com/in/username"
+    "href": "https://www.linkedin.com/in/jonathan-camelli-3286371b6/"
   },
   {
-    "label": "X",
-    "href": "https://x.com/username"
+    "label": "GitHub",
+    "href": "https://github.com/j0nbennett"
+  },
+  {
+    "label": "Twitter",
+    "href": "https://twitter.com/jonbennettpy"
+  },
+  {
+    "label": "Instagram",
+    "href": "https://instagram.com/jon_camelli"
+  },
+  {
+    "label": "WhatsApp",
+    "href": "https://wa.me/595992435330"
   }
 ]
-

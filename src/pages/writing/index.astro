@@ -11,19 +11,19 @@ const basePath = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Writing | Portfolio" description="Notas técnicas y aprendizajes prácticos." image="/og/writing.png">
-  <Container className="py-14">
+  <Container className="py-16 sm:py-20">
     <SectionTitle as="h1" title="Writing" subtitle="Artículos técnicos cortos enfocados en decisiones y aprendizaje real." />
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
         posts.map((post) => (
           <Card>
             <p class="text-xs text-[var(--muted)]">{post.data.date.toLocaleDateString("en-US")}</p>
-            <h3 class="mt-2 text-lg font-semibold">
-              <a class="focus-ring hover:underline" href={withBasePath(`/writing/${post.slug}/`, basePath)}>
+            <h3 class="mt-2 text-lg font-semibold text-[var(--text-heading)]">
+              <a class="focus-ring transition-colors hover:text-cyan-400" href={withBasePath(`/writing/${post.slug}/`, basePath)}>
                 {post.data.title}
               </a>
             </h3>
-            <p class="mt-3 text-sm text-[var(--muted)]">{post.data.summary}</p>
+            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed">{post.data.summary}</p>
           </Card>
         ))
       }

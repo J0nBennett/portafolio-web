@@ -8,12 +8,12 @@ const { tags } = Astro.props;
 
 <div class="mb-8" aria-label="Filtros por tag">
   <div class="flex flex-wrap gap-2" data-project-filters>
-    <button class="focus-ring rounded-md border border-[var(--border)] px-3 py-1.5 text-sm" data-filter="all" aria-pressed="true">
+    <button class="focus-ring rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1.5 text-sm font-medium text-cyan-400 transition-all duration-200" data-filter="all" aria-pressed="true">
       All
     </button>
     {
       tags.map((tag) => (
-        <button class="focus-ring rounded-md border border-[var(--border)] px-3 py-1.5 text-sm" data-filter={tag} aria-pressed="false">
+        <button class="focus-ring rounded-lg border border-white/[0.06] bg-white/[0.03] px-3.5 py-1.5 text-sm text-[var(--muted)] transition-all duration-200 hover:border-cyan-500/20 hover:text-cyan-400" data-filter={tag} aria-pressed="false">
           {tag}
         </button>
       ))
@@ -35,8 +35,13 @@ const { tags } = Astro.props;
       buttons.forEach((button) => {
         const isActive = button === target;
         button.setAttribute("aria-pressed", String(isActive));
-        button.classList.toggle("bg-[var(--brand)]", isActive);
-        button.classList.toggle("text-white", isActive);
+        if (isActive) {
+          button.classList.add("border-cyan-500/30", "bg-cyan-500/10", "text-cyan-400");
+          button.classList.remove("border-white/[0.06]", "bg-white/[0.03]", "text-[var(--muted)]");
+        } else {
+          button.classList.remove("border-cyan-500/30", "bg-cyan-500/10", "text-cyan-400");
+          button.classList.add("border-white/[0.06]", "bg-white/[0.03]", "text-[var(--muted)]");
+        }
       });
 
       cards.forEach((card) => {
@@ -47,4 +52,3 @@ const { tags } = Astro.props;
     });
   }
 </script>
-

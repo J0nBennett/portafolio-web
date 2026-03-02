@@ -8,41 +8,67 @@ import skills from "../data/skills.json";
 ---
 
 <BaseLayout title="About | Portfolio" description={site.about.bio}>
-  <Container className="py-14 sm:py-16">
+  <Container className="py-16 sm:py-20">
     <SectionTitle as="h1" title="About" subtitle={site.about.bio} />
 
-    <section aria-labelledby="approach" class="mb-12">
-      <h2 id="approach" class="mb-4 text-xl font-semibold">How I work</h2>
+    <!-- How I work -->
+    <section aria-labelledby="approach" class="mb-14 animate-fade-in-up delay-1">
+      <h2 id="approach" class="mb-6 text-xl font-bold text-[var(--text-heading)]">How I work</h2>
       <div class="grid gap-4 sm:grid-cols-2">
         <Card>
-          <h3 class="font-semibold">Problems I solve</h3>
-          <p class="mt-3 text-sm text-[var(--muted)]">{site.about.problemsSolved}</p>
+          <div class="flex items-start gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+            </span>
+            <div>
+              <h3 class="font-semibold text-[var(--text-heading)]">Problems I solve</h3>
+              <p class="mt-2 text-sm text-[var(--muted)] leading-relaxed">{site.about.problemsSolved}</p>
+            </div>
+          </div>
         </Card>
         <Card>
-          <h3 class="font-semibold">Engineering approach</h3>
-          <p class="mt-3 text-sm text-[var(--muted)]">{site.about.engineeringApproach}</p>
+          <div class="flex items-start gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </span>
+            <div>
+              <h3 class="font-semibold text-[var(--text-heading)]">Engineering approach</h3>
+              <p class="mt-2 text-sm text-[var(--muted)] leading-relaxed">{site.about.engineeringApproach}</p>
+            </div>
+          </div>
         </Card>
       </div>
     </section>
 
-    <section aria-labelledby="values" class="mb-12">
-      <h2 id="values" class="mb-4 text-xl font-semibold">What I value</h2>
-      <Card>
-        <ul class="grid gap-2 text-sm text-[var(--muted)] sm:grid-cols-2">
-          {site.about.values.map((value) => <li>• {value}</li>)}
-        </ul>
-      </Card>
+    <!-- Values -->
+    <section aria-labelledby="values" class="mb-14 animate-fade-in-up delay-2">
+      <h2 id="values" class="mb-6 text-xl font-bold text-[var(--text-heading)]">What I value</h2>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {site.about.values.map((value, i) => (
+          <div class="group flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 transition-all duration-300 hover:border-cyan-500/20 hover:bg-white/[0.04]">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/15 to-blue-500/15 text-sm font-bold gradient-text">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span class="text-sm text-[var(--text)]">{value}</span>
+          </div>
+        ))}
+      </div>
     </section>
 
-    <section aria-labelledby="skills" class="mb-12">
-      <h2 id="skills" class="mb-4 text-xl font-semibold">Skills</h2>
+    <!-- Skills -->
+    <section aria-labelledby="skills" class="mb-14 animate-fade-in-up delay-3">
+      <h2 id="skills" class="mb-6 text-xl font-bold text-[var(--text-heading)]">Skills</h2>
       <div class="grid gap-4 sm:grid-cols-2">
         {
           skills.map((skillGroup) => (
             <Card>
-              <h3 class="font-semibold">{skillGroup.category}</h3>
-              <ul class="mt-3 flex flex-wrap gap-2">
-                {skillGroup.items.map((skill) => <li class="rounded bg-neutral-100 px-2 py-1 text-xs">{skill}</li>)}
+              <h3 class="font-semibold text-[var(--text-heading)]">{skillGroup.category}</h3>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {skillGroup.items.map((skill) => (
+                  <li class="rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition-all duration-200 hover:border-cyan-500/20 hover:text-cyan-400 hover:bg-cyan-500/5">
+                    {skill}
+                  </li>
+                ))}
               </ul>
             </Card>
           ))
@@ -50,18 +76,33 @@ import skills from "../data/skills.json";
       </div>
     </section>
 
-    <section aria-labelledby="timeline">
-      <h2 id="timeline" class="mb-4 text-xl font-semibold">Timeline</h2>
-      <div class="space-y-4">
-        {
-          site.about.timeline.map((item) => (
-            <Card>
-              <p class="text-xs text-[var(--muted)]">{item.period}</p>
-              <h3 class="mt-1 font-semibold">{item.title}</h3>
-              <p class="mt-2 text-sm text-[var(--muted)]">{item.summary}</p>
-            </Card>
-          ))
-        }
+    <!-- Timeline -->
+    <section aria-labelledby="timeline" class="animate-fade-in-up delay-4">
+      <h2 id="timeline" class="mb-6 text-xl font-bold text-[var(--text-heading)]">Timeline</h2>
+      <div class="relative">
+        <!-- Vertical gradient line -->
+        <div class="absolute left-[15px] top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/40 via-blue-500/20 to-transparent sm:left-[19px]"></div>
+
+        <div class="space-y-6">
+          {
+            site.about.timeline.map((item, i) => (
+              <div class="relative flex gap-5 pl-2">
+                <!-- Dot -->
+                <div class="relative z-10 mt-1.5">
+                  <div class="h-3 w-3 rounded-full border-2 border-cyan-500 bg-[var(--bg)] shadow-[0_0_8px_rgba(6,182,212,0.4)] sm:h-4 sm:w-4"></div>
+                </div>
+                <!-- Content -->
+                <Card className="flex-1">
+                  <span class="inline-flex rounded-full border border-cyan-500/15 bg-cyan-500/5 px-2.5 py-0.5 text-xs font-medium text-cyan-400">
+                    {item.period}
+                  </span>
+                  <h3 class="mt-2 font-semibold text-[var(--text-heading)]">{item.title}</h3>
+                  <p class="mt-2 text-sm text-[var(--muted)] leading-relaxed">{item.summary}</p>
+                </Card>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </section>
   </Container>

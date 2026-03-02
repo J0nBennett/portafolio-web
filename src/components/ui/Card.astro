@@ -6,7 +6,10 @@ interface Props {
 const { className = "" } = Astro.props;
 ---
 
-<article class={`rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm ${className}`}>
-  <slot />
+<article class={`group relative rounded-xl border border-white/[0.06] bg-[var(--card-bg)] p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/20 hover:shadow-[0_0_30px_rgba(6,182,212,0.08)] ${className}`}>
+  <!-- Subtle gradient glow on hover -->
+  <div class="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500/[0.03] via-transparent to-violet-500/[0.03] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+  <div class="relative">
+    <slot />
+  </div>
 </article>
-

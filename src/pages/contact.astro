@@ -9,32 +9,50 @@ import socials from "../data/socials.json";
 ---
 
 <BaseLayout title="Contact | Portfolio" description="Canales de contacto profesional.">
-  <Container className="py-14">
+  <Container className="py-16 sm:py-20">
     <SectionTitle
       as="h1"
       title="Contact"
       subtitle="Disponible para colaborar en proyectos de ingeniería, calidad y automatización."
     />
-    <Card className="max-w-2xl">
-      <p class="text-[var(--muted)]">Email</p>
-      <p class="mb-5 mt-1 text-lg font-medium">{site.email}</p>
-      <Button href={`mailto:${site.email}`}>Send Email</Button>
-      <ul class="mt-8 flex flex-wrap gap-3">
-        {
-          socials.map((social) => (
-            <li>
-              <a
-                class="focus-ring inline-flex rounded-md border border-[var(--border)] px-3 py-2 text-sm hover:border-[var(--muted)]"
-                target="_blank"
-                rel="noreferrer"
-                href={social.href}
-              >
-                {social.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </Card>
+
+    <div class="max-w-2xl animate-fade-in-up delay-1">
+      <Card>
+        <!-- Email section -->
+        <div class="mb-6">
+          <p class="text-sm font-medium uppercase tracking-wider text-[var(--muted)]">Email</p>
+          <p class="mt-2 text-xl font-semibold gradient-text">{site.email}</p>
+        </div>
+
+        <Button href={`mailto:${site.email}`}>
+          Send Email
+        </Button>
+
+        <!-- Divider -->
+        <div class="my-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+        <!-- Social links -->
+        <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--muted)]">Find me on</p>
+        <ul class="flex flex-wrap gap-3">
+          {
+            socials.map((social) => (
+              <li>
+                <a
+                  class="focus-ring group inline-flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-[var(--text)] transition-all duration-300 hover:border-cyan-500/30 hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]"
+                  target="_blank"
+                  rel="noreferrer"
+                  href={social.href}
+                >
+                  {social.label}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-40 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                    <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+                  </svg>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </Card>
+    </div>
   </Container>
 </BaseLayout>

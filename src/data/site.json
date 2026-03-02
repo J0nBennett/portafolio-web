@@ -1,78 +1,83 @@
 {
-  "siteName": "Jony Sosa | Engineering Portfolio",
-  "description": "Portfolio técnico enfocado en calidad de software, automatización y entrega confiable. Documenta decisiones de ingeniería, trade-offs y resultados reales.",
-  "baseUrl": "https://username.github.io",
-  "author": "Jony Sosa",
-  "location": "Remoto, LATAM",
+  "siteName": "Jonathan Camelli | Portfolio",
+  "description": "Portfolio técnico de Jonathan Camelli, Senior QA Analyst con enfoque en calidad de software, automatización, IA y Oracle APEX.",
+  "baseUrl": "https://jonathancamelli.github.io",
+  "author": "Jonathan Camelli",
+  "location": "Luque, Paraguay",
   "roles": [
-    "QA Engineer",
-    "Automation Engineer",
-    "Software Engineer"
+    "QA Engineer & Automation Specialist",
+    "Oracle APEX Developer",
+    "AI-assisted Quality Enthusiast"
   ],
   "focusAreas": [
-    "Test Automation",
-    "CI/CD Quality Gates",
-    "Web Quality",
-    "Observability"
+    "AI-assisted Testing",
+    "QA Automation & Architecture",
+    "Oracle APEX / PL/SQL",
+    "CI/CD Pipelines"
   ],
-  "tagline": "Diseño estrategias de calidad y automatización que reducen riesgo de release sin frenar entrega.",
-  "email": "jonys@example.com",
+  "tagline": "Asegurando la calidad mediante automatización e IA. La calidad no se prueba al final, se diseña desde el inicio.",
+  "email": "jonbennettpy@gmail.com",
   "home": {
     "primaryCta": {
       "label": "Explorar proyectos",
       "href": "/projects"
     },
     "secondaryCta": {
-      "label": "Leer case studies",
-      "href": "/case-studies"
+      "label": "Ver sobre mí",
+      "href": "/about"
     },
     "differentiators": [
-      "Claridad antes que complejidad accidental.",
-      "Trade-offs explícitos para decidir con criterio.",
-      "Calidad sostenible como parte del delivery, no una fase final.",
-      "Automatización pragmática: menos ruido, más señal."
+      "Especialista en QA Automation con Playwright y JMeter.",
+      "Desarrollador experto en Oracle APEX y sistemas bancarios.",
+      "Pionero en la aplicación de IA para optimizar ciclos de QA.",
+      "Enfoque integral en CI/CD y observabilidad de pruebas."
     ],
     "highlights": [
       {
-        "label": "Entregables documentados",
-        "value": "15+"
+        "label": "Proyectos",
+        "value": "7+"
       },
       {
-        "label": "Años construyendo calidad",
-        "value": "5"
+        "label": "Años en IT",
+        "value": "4+"
       },
       {
         "label": "Especialidad",
-        "value": "Automation + CI"
+        "value": "QA + AI + APEX"
       }
     ]
   },
   "about": {
-    "bio": "Soy ingeniero orientado a calidad y automatización. Trabajo en el punto donde producto, desarrollo y testing se alinean para entregar software confiable.",
-    "problemsSolved": "Me enfoco en problemas de releases inestables, suites de pruebas frágiles, falta de visibilidad en CI y procesos de validación poco escalables.",
-    "engineeringApproach": "Pienso la calidad como un sistema: criterios explícitos, señales confiables y feedback temprano. Prefiero soluciones simples, observables y auditables sobre automatización opaca.",
+    "bio": "Soy QA Engineer y Desarrollador Oracle APEX con base en Paraguay. Mi pasión es el punto donde la automatización, la inteligencia artificial y el desarrollo se encuentran para crear productos de alta confiabilidad. Actualmente enfocado en aplicar IA para optimizar procesos de calidad y desarrollo.",
+    "problemsSolved": "Elimino ineficiencias en el ciclo de QA usando automatización e IA. Resuelvo problemas complejos en sistemas bancarios y aseguro lanzamientos estables mediante pipelines de CI/CD robustos.",
+    "engineeringApproach": "Diseño la calidad desde el primer commit. Utilizo herramientas como GitHub Copilot, Claude y MCP para potenciar la productividad y asegurar que cada línea de código esté validada.",
     "values": [
-      "Claridad técnica",
-      "Trade-offs explícitos",
-      "Automatización con propósito",
-      "Mantenibilidad a largo plazo",
-      "Responsabilidad de extremo a extremo"
+      "Diseño inicial de calidad",
+      "Automatización inteligente",
+      "Productividad asistida por IA",
+      "Transparencia técnica",
+      "Mejora continua basada en datos"
     ],
     "timeline": [
       {
-        "period": "2024 - Actualidad",
-        "title": "Senior QA Automation Engineer",
-        "summary": "Defino estrategia de calidad, estabilizo pipelines y mejoro señales de release para equipos cross-funcionales."
+        "period": "Sept 2025 - Actualidad",
+        "title": "QA Analyst | ITAE - Solar Banco",
+        "summary": "Definición y ejecución de estrategias de prueba para plataformas bancarias críticas, automatización funcional y regresión."
       },
       {
-        "period": "2022 - 2024",
-        "title": "Software Engineer",
-        "summary": "Construcción de productos web con foco en performance, claridad de arquitectura y evolución sostenible."
+        "period": "Ene 2024 - Sept 2025",
+        "title": "QA Analyst | Bancard",
+        "summary": "Automatización de pruebas con JMeter y herramientas de integración continua en el procesador de pagos líder."
       },
       {
-        "period": "2020 - 2022",
-        "title": "QA Engineer",
-        "summary": "Implementación de automatización funcional y adopción de estándares de calidad en equipos de producto."
+        "period": "Oct 2022 - Ene 2024",
+        "title": "QA Analyst | Banco Familiar",
+        "summary": "Implementación de automatización funcional con Katalon Studio y SQL para validación de datos financieros."
+      },
+      {
+        "period": "Dic 2021 - Ene 2024",
+        "title": "Software Developer | Kove S.A",
+        "summary": "Desarrollo de software personalizado con Oracle Apex y PL/SQL para diversas entidades bancarias y comerciales."
       }
     ]
   }
