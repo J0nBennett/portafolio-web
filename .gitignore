@@ -3,4 +3,13 @@ dist
 .astro
 .DS_Store
 *.log
+.env
+.env.*
+! .env.example
+/tmp/
+*.cjs
+*.mjs
+! astro.config.mjs
+! *.config.js
+! *.config.mjs
 
