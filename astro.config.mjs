@@ -9,6 +9,8 @@ const base =
     ? process.env.BASE_PATH
     : "/";
 
+console.log(`Building site with: SITE_URL=${site}, BASE_PATH=${base}`);
+
 export default defineConfig({
   site,
   base,
