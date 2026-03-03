@@ -8,7 +8,7 @@ import skills from "../data/skills.json";
 ---
 
 <BaseLayout title="About | Portfolio" description={site.about.bio}>
-  <Container className="py-16 sm:py-20">
+  <Container className="py-12 sm:py-20">
     <SectionTitle as="h1" title="About" subtitle={site.about.bio} />
 
     <!-- How I work -->
@@ -81,14 +81,14 @@ import skills from "../data/skills.json";
       <h2 id="timeline" class="mb-6 text-xl font-bold text-[var(--text-heading)]">Timeline</h2>
       <div class="relative">
         <!-- Vertical gradient line -->
-        <div class="absolute left-[15px] top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/40 via-blue-500/20 to-transparent sm:left-[19px]"></div>
+        <div class="absolute left-[15.5px] top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/40 via-blue-500/20 to-transparent sm:left-[19.5px]"></div>
 
         <div class="space-y-6">
           {
             site.about.timeline.map((item, i) => (
               <div class="relative flex gap-5 pl-2">
                 <!-- Dot -->
-                <div class="relative z-10 mt-1.5">
+                <div class="relative z-10 mt-1.5 flex justify-center w-8 sm:w-10">
                   <div class="h-3 w-3 rounded-full border-2 border-cyan-500 bg-[var(--bg)] shadow-[0_0_8px_rgba(6,182,212,0.4)] sm:h-4 sm:w-4"></div>
                 </div>
                 <!-- Content -->
