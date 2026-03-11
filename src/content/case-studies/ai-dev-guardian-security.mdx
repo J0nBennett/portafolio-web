@@ -1,0 +1,34 @@
+---
+title: "AI Dev Guardian: Seguridad con LLMs"
+slug: "ai-dev-guardian-security"
+summary: "Cómo implementamos un sistema de auditoría de seguridad automática utilizando modelos de lenguaje para reducir el riesgo en etapas tempranas."
+tags: ["ai", "security", "automation"]
+thumbnail: "/images/thumbs/ai-dev-guardian-study.png"
+date: 2025-02-15
+---
+
+## Contexto
+En el desarrollo de software rápido, la seguridad suele ser un cuello de botella. El equipo necesitaba una forma de detectar vulnerabilidades comunes sin esperar a auditorías externas o escaneos lentos de herramientas pesadas.
+
+## El Problema
+Las herramientas de análisis estático tradicionales (SAST) suelen generar muchos falsos positivos, lo que cansa a los desarrolladores y hace que ignoren las alertas. Necesitábamos "contexto" para entender si un patrón de código era realmente peligroso o un uso legítimo.
+
+## Decisiones Técnicas
+1. **Modelos de Lenguaje para Triaje**: Utilizamos GPT-4o para analizar los hallazgos de herramientas estáticas y filtrar el ruido.
+2. **Análisis Local con Agentes**: Implementamos un agente que corre localmente, evitando que el código sensible salga del entorno controlado a menos que sea necesario.
+3. **Reportes en Lenguaje Natural**: En lugar de códigos de error oscuros, la herramienta explica *por qué* algo es un riesgo y sugiere una corrección inmediata.
+
+## Arquitectura
+La herramienta funciona como un CLI que:
+1. Escanea el código buscando patrones sospechosos.
+2. Envía fragmentos contextualmente relevantes a la IA.
+3. Clasifica la severidad basándose en el framework OWASP.
+
+## Resultados
+- **Reducción de falsos positivos**: El filtrado por IA redujo el ruido en un 60% comparado con herramientas tradicionales.
+- **Velocidad de corrección**: Los desarrolladores empezaron a corregir problemas en el mismo PR gracias a las sugerencias automáticas.
+- **Cultura de seguridad**: El equipo se volvió más consciente de las mejores prácticas de codificación segura.
+
+## Lecciones Aprendidas
+- La IA no reemplaza al experto en seguridad, pero es un multiplicador de fuerza increíble.
+- El contexto (archivos relacionados, intención del código) es clave para que el LLM sea preciso.

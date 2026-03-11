@@ -44,18 +44,19 @@ const basePath = import.meta.env.BASE_URL;
         </div>
       )}
       <div class="flex items-center justify-between gap-3">
-        <h3 class="text-lg font-semibold text-[var(--text-heading)]">
+        <h3 class="text-lg font-semibold text-[var(--text-heading)] transition-colors group-hover:text-cyan-400">
           <a
-            class="focus-ring transition-colors duration-200 hover:text-cyan-400"
+            class="focus-ring"
             href={withBasePath(`/projects/${slug}/`, basePath)}
           >
+            <span class="absolute inset-0 z-0"></span>
             {project.title}
           </a>
         </h3>
         {project.featured && <Badge label="Featured" />}
       </div>
       <p class="text-sm text-[var(--muted)] leading-relaxed">{project.summary}</p>
-      <ul class="flex flex-wrap gap-2">
+      <ul class="relative z-10 flex flex-wrap gap-2">
         {
           project.tags.map((tag) => (
             <li class="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-1 text-xs text-[var(--muted)] transition-colors hover:border-cyan-500/20 hover:text-cyan-400">
@@ -64,34 +65,41 @@ const basePath = import.meta.env.BASE_URL;
           ))
         }
       </ul>
-      <p class="mt-auto text-xs text-[var(--muted)]">
+      <p class="relative z-10 mt-auto text-xs text-[var(--muted)]">
         <span class="text-cyan-500/60">Stack:</span> {project.stack.join(" • ")}
       </p>
-      <div class="flex gap-4 text-sm">
-        <a
-          href={project.links.repo}
-          target="_blank"
-          rel="noreferrer"
-          class="focus-ring group/link inline-flex items-center gap-1 text-[var(--muted)] transition-colors hover:text-cyan-400"
-        >
-          Repo
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
-            <path d="M7 17L17 7" /><path d="M7 7h10v10" />
-          </svg>
-        </a>
-        {project.links.demo && (
+      <div class="relative z-10 flex items-center justify-between mt-6">
+        <div class="flex gap-4 text-sm">
           <a
-            href={project.links.demo}
+            href={project.links.repo}
             target="_blank"
             rel="noreferrer"
             class="focus-ring group/link inline-flex items-center gap-1 text-[var(--muted)] transition-colors hover:text-cyan-400"
           >
-            Demo
+            Repo
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
               <path d="M7 17L17 7" /><path d="M7 7h10v10" />
             </svg>
           </a>
-        )}
+          {project.links.demo && (
+            <a
+              href={project.links.demo}
+              target="_blank"
+              rel="noreferrer"
+              class="focus-ring group/link inline-flex items-center gap-1 text-[var(--muted)] transition-colors hover:text-cyan-400"
+            >
+              Demo
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
+                <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+              </svg>
+            </a>
+          )}
+        </div>
+
+        <div class="flex items-center text-xs font-semibold uppercase tracking-wider text-cyan-400 opacity-0 transition-all duration-300 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0">
+          View Project
+          <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
       </div>
     </div>
   </Card>

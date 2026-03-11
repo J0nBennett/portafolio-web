@@ -1,0 +1,33 @@
+---
+title: "Agentes Autónomos para QA"
+slug: "autonomous-qa-agents"
+summary: "Implementación de agentes inteligentes que navegan aplicaciones web para detectar fallos visuales y de flujo sin scripts rígidos."
+tags: ["testing", "ai", "qa"]
+thumbnail: "/images/thumbs/autonomous-qa-agents.png"
+date: 2025-03-05
+---
+
+## Contexto
+En aplicaciones con cambios constantes en la UI, los tests E2E tradicionales (Selenium/Cypress) fallan constantemente debido a selectores que cambian, lo que genera un alto costo de mantenimiento.
+
+## El Problema
+El "Flakiness" o inestabilidad de los tests. Pasábamos más tiempo arreglando tests rotos por cambios estéticos que encontrando bugs reales.
+
+## Decisiones Técnicas
+1. **Navegación Semántica**: En lugar de buscar `id="btn-01"`, el agente busca "el botón de finalizar compra" analizando el DOM y la accesibilidad.
+2. **Visión por Computadora**: Integración de modelos visuales para detectar regresiones estéticas que el código no captura (colores incorrectos, elementos superpuestos).
+3. **Auto-curación (Self-healing)**: Si un flujo cambia ligeramente, el agente intenta adaptarse y reporta la sugerencia de actualización para el script base.
+
+## Arquitectura
+- **Engine**: Playwright como base de automatización.
+- **Inteligencia**: LangChain + GPT-4o-mini para la toma de decisiones sobre el siguiente paso a ejecutar.
+- **Validación**: Comparación de snapshots visuales de alta precisión.
+
+## Resultados
+- **Mantenimiento Cero**: Reducción del 80% en el tiempo dedicado a actualizar selectores.
+- **Cobertura Exploratoria**: El agente encontró bugs en caminos que no estaban cubiertos por los tests manuales ni los scripts fijos.
+- **Confiabilidad**: El pipeline de CI volvió a ser verde y confiable para el equipo de desarrollo.
+
+## Lecciones Aprendidas
+- La IA es excelente para manejar la incertidumbre de las interfaces modernas.
+- Es vital poner "barreras" (guardrails) al agente para que no entre en bucles infinitos durante la exploración.

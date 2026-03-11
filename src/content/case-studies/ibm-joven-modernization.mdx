@@ -1,0 +1,33 @@
+---
+title: "Modernización IBM Joven"
+slug: "ibm-joven-modernization"
+summary: "Transformación de un flujo de trabajo manual en una plataforma moderna utilizando Astro y Google Sheets como CMS dinámico."
+tags: ["frontend", "astro", "cms"]
+thumbnail: "/images/thumbs/ibm-joven-modernization.png"
+date: 2025-02-20
+---
+
+## Contexto
+La comunidad de jóvenes de la Iglesia Bautista Maranata (IBM) necesitaba centralizar su información, eventos y recursos en un lugar accesible y visualmente atractivo.
+
+## El Problema
+La actualización del sitio web anterior era técnica y lenta. Los coordinadores de eventos no podían subir información por sí mismos, lo que causaba retrasos y desactualización de datos.
+
+## Decisiones Técnicas
+1. **Astro para Rendimiento**: Elegimos Astro por su capacidad de generar sitios estáticos ultrarrápidos, ideales para una plataforma de información.
+2. **Google Sheets como CMS**: Para evitar la curva de aprendizaje de un CMS tradicional (como Strapi o Sanity), conectamos la web a una hoja de Google. Los coordinadores editan una tabla y el sitio se actualiza.
+3. **Galería Dinámica**: Implementación de un sistema de carga de imágenes optimizado que consume desde Google Drive, manteniendo el hosting ligero.
+
+## Arquitectura
+- **Frontend**: Astro + Tailwind CSS.
+- **Backend-less**: Sincronización vía API de Google Sheets en tiempo de build (SSG) y revalidación bajo demanda.
+- **Hosting**: Despliegue automático en GitHub Pages / Vercel.
+
+## Resultados
+- **Autonomía Total**: El equipo de comunicación ahora actualiza el sitio sin intervención de un desarrollador.
+- **Engagement**: Aumento del 40% en las visitas semanales debido a que la información siempre está al día.
+- **Velocidad**: Puntuación de 100 en Lighthouse de Google.
+
+## Lecciones Aprendidas
+- A veces la mejor herramienta técnica es la que el usuario ya sabe usar (Google Sheets).
+- La simplicidad en el backend permite iterar mucho más rápido en el diseño y la UX.
