@@ -2,35 +2,71 @@
 import Container from "./Container.astro";
 import socials from "../../data/socials.json";
 import site from "../../data/site.json";
+import { withBasePath } from "../../utils/url";
+const basePath = import.meta.env.BASE_URL;
 ---
 
 <footer class="mt-20 border-t border-white/[0.06] relative">
   <!-- Gradient line on top -->
   <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"></div>
 
-  <Container className="flex flex-col gap-6 py-10 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-    <div class="flex flex-col gap-1">
-      <p class="font-medium text-[var(--text-heading)]">{site.author}</p>
-      <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
+  <Container className="py-12">
+    <!-- Mini CTA -->
+    <div class="scroll-reveal mb-10 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8">
+      <div>
+        <p class="text-lg font-bold text-[var(--text-heading)]">¿Trabajemos juntos?</p>
+        <p class="mt-1 text-sm text-[var(--muted)]">Siempre abierto a conversaciones sobre calidad, automatización e IA.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a
+          href={withBasePath("/cv.pdf", basePath)}
+          target="_blank"
+          rel="noreferrer"
+          class="focus-ring inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-[var(--muted)] transition-all hover:border-cyan-500/30 hover:text-cyan-400"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          CV
+        </a>
+        <a
+          href={withBasePath("/contact", basePath)}
+          class="focus-ring shimmer inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:shadow-cyan-500/30 hover:scale-[1.02]"
+        >
+          Contactar
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
     </div>
-    <ul class="flex items-center gap-3">
-      {
-        socials.map((social) => (
-          <li>
-            <a
-              href={social.href}
-              target="_blank"
-              rel="noreferrer"
-              class="focus-ring inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-3.5 py-2 text-sm transition-all duration-300 hover:border-cyan-500/30 hover:text-cyan-400 hover:shadow-[0_0_15px_rgba(6,182,212,0.1)]"
-            >
-              {social.label}
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-50">
-                <path d="M7 17L17 7" /><path d="M7 7h10v10" />
-              </svg>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+
+    <!-- Footer bottom -->
+    <div class="flex flex-col gap-6 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-col gap-1">
+        <p class="font-medium text-[var(--text-heading)]">{site.author}</p>
+        <p>&copy; {new Date().getFullYear()} Todos los derechos reservados.</p>
+        <p class="mt-1 text-xs italic text-[var(--muted)]/60">"La calidad no se prueba al final, se diseña desde el inicio."</p>
+      </div>
+      <ul class="flex items-center gap-3 flex-wrap">
+        {
+          socials.map((social: { label: string; href: string }) => (
+            <li>
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                class="focus-ring inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-3.5 py-2 text-sm transition-all duration-300 hover:border-cyan-500/30 hover:text-cyan-400 hover:shadow-[0_0_15px_rgba(6,182,212,0.1)]"
+              >
+                {social.label}
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-50">
+                  <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+                </svg>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </Container>
 </footer>

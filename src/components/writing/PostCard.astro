@@ -21,7 +21,7 @@ const basePath = import.meta.env.BASE_URL;
   
   <div class="relative flex flex-col h-full">
     <time datetime={post.data.date.toISOString()} class="text-xs font-medium text-[var(--muted)]">
-      {post.data.date.toLocaleDateString("en-US", {
+      {post.data.date.toLocaleDateString("es-PY", {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -40,7 +40,7 @@ const basePath = import.meta.env.BASE_URL;
     </p>
     
     <div class="mt-6 flex items-center text-xs font-semibold uppercase tracking-wider text-cyan-400 opacity-0 transition-all duration-300 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0">
-      Read More
+      Leer más
       <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </div>
   </div>

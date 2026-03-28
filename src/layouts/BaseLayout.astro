@@ -16,23 +16,94 @@ const { title = site.siteName, description = site.description, image, canonical 
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <Seo title={title} description={description} image={image} canonical={canonical} />
   </head>
   <body>
+    <!-- Cursor glow effect (desktop only) -->
+    <div id="cursor-glow" class="cursor-glow hidden lg:block" aria-hidden="true"></div>
+    
     <a href="#main-content" class="focus-ring absolute left-4 top-4 z-30 -translate-y-20 rounded bg-[var(--surface-solid)] px-3 py-2 text-sm transition focus:translate-y-0">
-      Skip to content
+      Ir al contenido
     </a>
     <Header />
     <main id="main-content">
       <slot />
     </main>
     <Footer />
+
+    <!-- Scroll Reveal Observer -->
+    <script>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -60px 0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-scale').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Cursor glow effect
+      const cursorGlow = document.getElementById('cursor-glow');
+      if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+        let rafId: number;
+        document.addEventListener('mousemove', (e) => {
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(() => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+          });
+        });
+      }
+
+      // Animated counters
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = el.getAttribute('data-count') || '0';
+        const hasPlus = target.includes('+');
+        const num = parseInt(target.replace(/[^0-9]/g, ''));
+        const suffix = target.replace(/[0-9]/g, '');
+        
+        if (isNaN(num)) {
+          el.textContent = target;
+          return;
+        }
+
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              let current = 0;
+              const increment = Math.max(1, Math.ceil(num / 40));
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= num) {
+                  current = num;
+                  clearInterval(timer);
+                }
+                (el as HTMLElement).textContent = current + suffix;
+              }, 30);
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        io.observe(el);
+      });
+    </script>
   </body>
 </html>

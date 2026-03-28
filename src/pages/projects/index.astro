@@ -14,21 +14,25 @@ const allTags = [...new Set(projects.flatMap((project) => project.data.tags))].s
 ---
 
 <BaseLayout
-  title="Projects | Portfolio"
+  title="Proyectos | Portfolio"
   description="Listado de proyectos con enfoque de ingeniería."
   image="/og/projects.png"
 >
   <Container className="py-16 sm:py-20">
-    <SectionTitle
-      as="h1"
-      title="Projects"
-      subtitle="Cada proyecto documenta problema, solución y decisiones técnicas."
-    />
-    <ProjectFilters tags={allTags} />
+    <div class="scroll-reveal">
+      <SectionTitle
+        as="h1"
+        title="Proyectos"
+        subtitle="Cada proyecto documenta problema, solución y decisiones técnicas."
+      />
+    </div>
+    <div class="scroll-reveal">
+      <ProjectFilters tags={allTags} />
+    </div>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
-        projects.map((project) => (
-          <div data-project-card data-tags={project.data.tags.join(",")}>
+        projects.map((project, i) => (
+          <div data-project-card data-tags={project.data.tags.join(",")} class={`scroll-reveal stagger-${(i % 6) + 1}`}>
             <ProjectCard project={project.data} slug={project.slug} />
           </div>
         ))

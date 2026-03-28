@@ -6,16 +6,19 @@ import SectionTitle from "../../components/ui/SectionTitle.astro";
 import PostCard from "../../components/writing/PostCard.astro";
 
 const posts = (await getCollection("posts")).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const basePath = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="Writing | Portfolio" description="Notas técnicas y aprendizajes prácticos." image="/og/writing.png">
+<BaseLayout title="Blog | Portfolio" description="Notas técnicas y aprendizajes prácticos." image="/og/writing.png">
   <Container className="py-16 sm:py-20">
-    <SectionTitle as="h1" title="Writing" subtitle="Artículos técnicos cortos enfocados en decisiones y aprendizaje real." />
+    <div class="scroll-reveal">
+      <SectionTitle as="h1" title="Blog" subtitle="Artículos técnicos enfocados en decisiones y aprendizaje real." />
+    </div>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
-        posts.map((post) => (
-          <PostCard post={post} />
+        posts.map((post, i) => (
+          <div class={`scroll-reveal stagger-${(i % 6) + 1}`}>
+            <PostCard post={post} />
+          </div>
         ))
       }
     </div>

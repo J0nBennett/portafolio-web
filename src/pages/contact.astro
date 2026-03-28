@@ -8,51 +8,181 @@ import site from "../data/site.json";
 import socials from "../data/socials.json";
 ---
 
-<BaseLayout title="Contact | Portfolio" description="Canales de contacto profesional.">
+<BaseLayout title="Contacto | Portfolio" description="Canales de contacto profesional.">
   <Container className="py-16 sm:py-20">
-    <SectionTitle
-      as="h1"
-      title="Contact"
-      subtitle="Disponible para colaborar en proyectos de ingeniería, calidad y automatización."
-    />
+    <div class="scroll-reveal">
+      <SectionTitle
+        as="h1"
+        title="Contacto"
+        subtitle="Disponible para colaborar en proyectos de ingeniería, calidad y automatización."
+      />
+    </div>
 
-    <div class="max-w-2xl animate-fade-in-up delay-1">
-      <Card>
-        <!-- Email section -->
-        <div class="mb-6">
-          <p class="text-sm font-medium uppercase tracking-wider text-[var(--muted)]">Email</p>
-          <p class="mt-2 text-xl font-semibold gradient-text">{site.email}</p>
+    <div class="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
+      <!-- Contact Form -->
+      <div class="scroll-reveal">
+        <Card>
+          <h2 class="text-lg font-bold text-[var(--text-heading)] mb-6">Envíame un mensaje</h2>
+          <form
+            action="https://formsubmit.co/jonbennettpy@gmail.com"
+            method="POST"
+            class="space-y-5"
+            id="contact-form"
+          >
+            <!-- Honeypot anti-spam -->
+            <input type="text" name="_honey" style="display:none" />
+            <!-- Disable captcha -->
+            <input type="hidden" name="_captcha" value="false" />
+            <!-- Success redirect -->
+            <input type="hidden" name="_next" value={`${site.baseUrl}/contact?sent=true`} />
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="name" class="block text-sm font-medium text-[var(--text-heading)] mb-1.5">Nombre</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  placeholder="Tu nombre"
+                  class="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-2.5 text-sm text-[var(--text)] placeholder:text-[var(--muted)]/50 focus:outline-none focus:border-cyan-500/40 focus:ring-1 focus:ring-cyan-500/30 transition-all"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-[var(--text-heading)] mb-1.5">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  placeholder="tu@email.com"
+                  class="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-2.5 text-sm text-[var(--text)] placeholder:text-[var(--muted)]/50 focus:outline-none focus:border-cyan-500/40 focus:ring-1 focus:ring-cyan-500/30 transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="subject" class="block text-sm font-medium text-[var(--text-heading)] mb-1.5">Asunto</label>
+              <input
+                type="text"
+                name="_subject"
+                id="subject"
+                placeholder="¿En qué puedo ayudarte?"
+                class="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-2.5 text-sm text-[var(--text)] placeholder:text-[var(--muted)]/50 focus:outline-none focus:border-cyan-500/40 focus:ring-1 focus:ring-cyan-500/30 transition-all"
+              />
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-[var(--text-heading)] mb-1.5">Mensaje</label>
+              <textarea
+                name="message"
+                id="message"
+                required
+                rows="5"
+                placeholder="Cuéntame sobre tu proyecto o necesidad..."
+                class="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-2.5 text-sm text-[var(--text)] placeholder:text-[var(--muted)]/50 focus:outline-none focus:border-cyan-500/40 focus:ring-1 focus:ring-cyan-500/30 transition-all resize-none"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="focus-ring shimmer group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
+            >
+              Enviar mensaje
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-0.5">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </form>
+        </Card>
+      </div>
+
+      <!-- Contact Info Sidebar -->
+      <div class="space-y-6">
+        <!-- Direct Contact -->
+        <div class="scroll-reveal stagger-1">
+          <Card>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </span>
+              <div>
+                <p class="text-sm font-medium text-[var(--muted)]">Email directo</p>
+                <a href={`mailto:${site.email}`} class="text-base font-semibold gradient-text hover:opacity-80 transition-opacity">{site.email}</a>
+              </div>
+            </div>
+          </Card>
         </div>
 
-        <Button href={`mailto:${site.email}`}>
-          Send Email
-        </Button>
+        <!-- WhatsApp -->
+        <div class="scroll-reveal stagger-2">
+          <Card>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <div>
+                <p class="text-sm font-medium text-[var(--muted)]">WhatsApp</p>
+                <a href="https://wa.me/595992435330" target="_blank" rel="noreferrer" class="text-base font-semibold text-green-400 hover:opacity-80 transition-opacity">Enviar mensaje</a>
+              </div>
+            </div>
+          </Card>
+        </div>
 
-        <!-- Divider -->
-        <div class="my-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <!-- Location -->
+        <div class="scroll-reveal stagger-3">
+          <Card>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-violet-500/10 text-violet-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <div>
+                <p class="text-sm font-medium text-[var(--muted)]">Ubicación</p>
+                <p class="text-base font-semibold text-[var(--text-heading)]">{site.location}</p>
+              </div>
+            </div>
+          </Card>
+        </div>
 
-        <!-- Social links -->
-        <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--muted)]">Find me on</p>
-        <ul class="flex flex-wrap gap-3">
-          {
-            socials.map((social) => (
-              <li>
-                <a
-                  class="focus-ring group inline-flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-[var(--text)] transition-all duration-300 hover:border-cyan-500/30 hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]"
-                  target="_blank"
-                  rel="noreferrer"
-                  href={social.href}
-                >
-                  {social.label}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-40 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                    <path d="M7 17L17 7" /><path d="M7 7h10v10" />
-                  </svg>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </Card>
+        <!-- Social Links -->
+        <div class="scroll-reveal stagger-4">
+          <Card>
+            <p class="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--muted)]">Encuéntrame en</p>
+            <ul class="flex flex-wrap gap-2">
+              {
+                socials.map((social: { label: string; href: string }) => (
+                  <li>
+                    <a
+                      class="focus-ring group inline-flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-[var(--text)] transition-all duration-300 hover:border-cyan-500/30 hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]"
+                      target="_blank"
+                      rel="noreferrer"
+                      href={social.href}
+                    >
+                      {social.label}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-40 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                        <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+                      </svg>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </Card>
+        </div>
+
+        <!-- Availability -->
+        <div class="scroll-reveal stagger-5">
+          <div class="rounded-xl border border-green-500/20 bg-green-500/5 p-5 text-center">
+            <span class="availability-badge mx-auto mb-3">
+              <span class="availability-dot"></span>
+              Disponible
+            </span>
+            <p class="text-sm text-[var(--muted)]">
+              Actualmente abierto para nuevos proyectos y colaboraciones.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </Container>
 </BaseLayout>

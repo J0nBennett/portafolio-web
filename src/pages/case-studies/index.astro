@@ -13,51 +13,55 @@ const basePath = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
-  title="Case Studies | Portfolio"
-  description="Case studies con decisiones técnicas y resultados."
+  title="Casos de Estudio | Portfolio"
+  description="Casos de estudio con decisiones técnicas y resultados."
   image="/og/case-studies.png"
 >
   <Container className="py-16 sm:py-20">
-    <SectionTitle
-      as="h1"
-      title="Case Studies"
-      subtitle="Análisis de contexto, decisiones técnicas y resultados medibles."
-    />
+    <div class="scroll-reveal">
+      <SectionTitle
+        as="h1"
+        title="Casos de Estudio"
+        subtitle="Análisis de contexto, decisiones técnicas y resultados medibles."
+      />
+    </div>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
-        studies.map((study) => (
-          <Card className="flex flex-col h-full">
-            {study.data.thumbnail && (
-              <div class="mb-4 overflow-hidden rounded-lg">
-                <img
-                  src={withBasePath(study.data.thumbnail, basePath)}
-                  alt={`${study.data.title} thumbnail`}
-                  class="h-32 w-full border border-white/[0.06] object-cover rounded-lg transition-transform duration-500 hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                  width="1200"
-                  height="630"
-                />
+        studies.map((study, i) => (
+          <div class={`scroll-reveal stagger-${(i % 6) + 1}`}>
+            <Card className="flex flex-col h-full">
+              {study.data.thumbnail && (
+                <div class="mb-4 overflow-hidden rounded-lg">
+                  <img
+                    src={withBasePath(study.data.thumbnail, basePath)}
+                    alt={`${study.data.title} thumbnail`}
+                    class="h-32 w-full border border-white/[0.06] object-cover rounded-lg transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    width="1200"
+                    height="630"
+                  />
+                </div>
+              )}
+              <p class="text-xs text-[var(--muted)]">{study.data.date.toLocaleDateString("es-PY", { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              <h3 class="mt-2 text-lg font-semibold text-[var(--text-heading)] transition-colors group-hover:text-cyan-400">
+                <a
+                  class="focus-ring"
+                  href={withBasePath(`/case-studies/${study.slug}/`, basePath)}
+                >
+                  <span class="absolute inset-0 z-0"></span>
+                  {study.data.title}
+                </a>
+              </h3>
+              <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed flex-1">
+                {study.data.summary}
+              </p>
+              <div class="mt-6 flex items-center text-xs font-semibold uppercase tracking-wider text-cyan-400 opacity-0 transition-all duration-300 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0">
+                Ver Caso de Estudio
+                <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </div>
-            )}
-            <p class="text-xs text-[var(--muted)]">{study.data.date.toLocaleDateString("en-US")}</p>
-            <h3 class="mt-2 text-lg font-semibold text-[var(--text-heading)] transition-colors group-hover:text-cyan-400">
-              <a
-                class="focus-ring"
-                href={withBasePath(`/case-studies/${study.slug}/`, basePath)}
-              >
-                <span class="absolute inset-0 z-0"></span>
-                {study.data.title}
-              </a>
-            </h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed flex-1">
-              {study.data.summary}
-            </p>
-            <div class="mt-6 flex items-center text-xs font-semibold uppercase tracking-wider text-cyan-400 opacity-0 transition-all duration-300 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0">
-              Ver Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </div>
-          </Card>
+            </Card>
+          </div>
         ))
       }
     </div>

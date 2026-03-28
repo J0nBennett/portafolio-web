@@ -4,30 +4,30 @@ import Container from "./Container.astro";
 import { withBasePath } from "../../utils/url";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/writing", label: "Writing" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Inicio" },
+  { href: "/projects", label: "Proyectos" },
+  { href: "/case-studies", label: "Casos de Estudio" },
+  { href: "/writing", label: "Blog" },
+  { href: "/about", label: "Sobre mí" },
+  { href: "/contact", label: "Contacto" },
 ];
 const basePath = import.meta.env.BASE_URL;
 ---
 
-<header class="sticky top-0 z-20 border-b border-white/[0.06] bg-[#0a0a0f]/80 backdrop-blur-xl">
-  <Container className="flex items-center justify-between py-4">
+<header class="sticky top-0 z-20 border-b border-white/[0.06] bg-[var(--bg)]/80 backdrop-blur-xl">
+  <Container className="flex items-center justify-between py-3">
     <a href={withBasePath("/", basePath)} class="focus-ring group flex items-center gap-2">
       <!-- Logo mark -->
-      <span class="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 text-[10px] sm:text-xs sm:text-sm font-bold text-white shadow-lg shadow-cyan-500/20">
+      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 text-xs font-bold text-white shadow-lg shadow-cyan-500/20 transition-transform duration-300 group-hover:scale-110">
         JC
       </span>
-      <span class="text-[10px] sm:text-xs sm:text-sm font-semibold tracking-wide text-[var(--text-heading)] transition-colors group-hover:text-cyan-400 truncate max-w-[120px] sm:max-w-none">
+      <span class="text-sm font-semibold tracking-wide text-[var(--text-heading)] transition-colors group-hover:text-cyan-400 truncate max-w-[120px] sm:max-w-none">
         {site.author}
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav aria-label="Principal" class="hidden md:block">
+    <nav aria-label="Principal" class="hidden lg:block">
       <ul class="flex items-center gap-1">
         {
           navItems.map((item) => (
@@ -45,10 +45,29 @@ const basePath = import.meta.env.BASE_URL;
       </ul>
     </nav>
 
+    <!-- Right side: CV button + Availability -->
+    <div class="hidden md:flex items-center gap-3">
+      <a
+        href={withBasePath("/cv.pdf", basePath)}
+        target="_blank"
+        rel="noreferrer"
+        class="focus-ring inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition-all duration-300 hover:border-cyan-500/30 hover:text-cyan-400"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        CV
+      </a>
+      <span class="availability-badge">
+        <span class="availability-dot"></span>
+        Disponible
+      </span>
+    </div>
+
     <!-- Mobile hamburger -->
     <button
       id="mobile-menu-btn"
-      class="focus-ring flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-[var(--muted)] transition hover:border-cyan-500/30 hover:text-[var(--text-heading)] md:hidden"
+      class="focus-ring flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-[var(--muted)] transition hover:border-cyan-500/30 hover:text-[var(--text-heading)] lg:hidden"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -65,7 +84,7 @@ const basePath = import.meta.env.BASE_URL;
   </Container>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-white/[0.06] bg-[#0a0a0f]/95 backdrop-blur-xl md:hidden">
+  <div id="mobile-menu" class="hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-white/[0.06] bg-[var(--bg)]/95 backdrop-blur-xl lg:hidden">
     <Container>
       <nav class="py-6">
         <ul class="flex flex-col gap-2">
@@ -82,6 +101,24 @@ const basePath = import.meta.env.BASE_URL;
             ))
           }
         </ul>
+        <!-- Mobile CV + Availability -->
+        <div class="mt-4 flex items-center gap-3 px-4">
+          <a
+            href={withBasePath("/cv.pdf", basePath)}
+            target="_blank"
+            rel="noreferrer"
+            class="focus-ring inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-[var(--muted)] transition-all hover:border-cyan-500/30 hover:text-cyan-400"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Descargar CV
+          </a>
+          <span class="availability-badge">
+            <span class="availability-dot"></span>
+            Disponible
+          </span>
+        </div>
       </nav>
     </Container>
   </div>
