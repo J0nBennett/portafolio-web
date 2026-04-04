@@ -4,6 +4,10 @@ import site from "../data/site.json";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import Seo from "../components/seo/Seo.astro";
+import { withBasePath } from "../utils/url";
+
+const basePath = import.meta.env.BASE_URL;
+
 
 interface Props {
   title?: string;
@@ -26,6 +30,7 @@ const { title = site.siteName, description = site.description, image, canonical 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href={withBasePath("/favicon.svg", basePath)} />
     <Seo title={title} description={description} image={image} canonical={canonical} />
   </head>
   <body>
