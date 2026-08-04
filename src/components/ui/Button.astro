@@ -2,35 +2,40 @@
 interface Props {
   href: string;
   variant?: "primary" | "secondary";
+  size?: "sm" | "md" | "lg";
+  className?: string;
   target?: string;
   rel?: string;
 }
 
-const { href, variant = "primary", target, rel } = Astro.props;
+const { href, variant = "primary", size = "md", className = "", target, rel } = Astro.props;
 import { withBasePath } from "../../utils/url";
 
 const resolvedHref = withBasePath(href, import.meta.env.BASE_URL);
+
+const sizeClasses = {
+  sm: "px-3.5 py-1.5 text-xs",
+  md: "px-5 py-2.5 text-sm",
+  lg: "px-6 py-3 text-base font-semibold",
+};
+
+const basePrimary = "focus-ring shimmer group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98]";
+const baseSecondary = "focus-ring group inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] font-medium text-[var(--text)] transition-all duration-300 hover:border-cyan-500/30 hover:bg-white/[0.06] hover:text-cyan-400";
+
+const computedClass = `${variant === "primary" ? basePrimary : baseSecondary} ${sizeClasses[size]} ${className}`.trim();
 ---
 
-{variant === "primary" ? (
-  <a
-    href={resolvedHref}
-    target={target}
-    rel={rel}
-    class="focus-ring shimmer group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98]"
-  >
-    <slot />
+<a
+  href={resolvedHref}
+  target={target}
+  rel={rel}
+  class={computedClass}
+>
+  <slot />
+  {variant === "primary" && (
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 group-hover:translate-x-0.5">
       <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
     </svg>
-  </a>
-) : (
-  <a
-    href={resolvedHref}
-    target={target}
-    rel={rel}
-    class="focus-ring group inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-[var(--text)] transition-all duration-300 hover:border-cyan-500/30 hover:bg-white/[0.06] hover:text-cyan-400"
-  >
-    <slot />
-  </a>
-)}
+  )}
+</a>
+

@@ -84,7 +84,6 @@ const { title = site.siteName, description = site.description, image, canonical 
       // Animated counters
       document.querySelectorAll('[data-count]').forEach(el => {
         const target = el.getAttribute('data-count') || '0';
-        const hasPlus = target.includes('+');
         const num = parseInt(target.replace(/[^0-9]/g, ''));
         const suffix = target.replace(/[0-9]/g, '');
         
