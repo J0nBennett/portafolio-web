@@ -5,9 +5,9 @@
   "author": "Jonathan Camelli",
   "location": "Luque, Paraguay",
   "roles": [
-    "QA Engineer & Automation Specialist",
+    "Senior QA / QA Automation",
     "Oracle APEX Developer",
-    "AI-assisted Quality Enthusiast"
+    "QA asistido por IA"
   ],
   "focusAreas": [
     "AI-assisted Testing",
@@ -15,7 +15,7 @@
     "Oracle APEX / PL/SQL",
     "CI/CD Pipelines"
   ],
-  "tagline": "Asegurando la calidad mediante automatización e IA. La calidad no se prueba al final, se diseña desde el inicio.",
+  "tagline": "Pruebas web, móviles y de APIs con Playwright, Postman e IA aplicada al flujo de QA.",
   "email": "jonbennettpy@gmail.com",
   "home": {
     "primaryCta": {
@@ -27,30 +27,38 @@
       "href": "/about"
     },
     "differentiators": [
-      "Especialista en QA Automation con Playwright y JMeter.",
-      "Desarrollador experto en Oracle APEX y sistemas bancarios.",
-      "Pionero en la aplicación de IA para optimizar ciclos de QA.",
-      "Enfoque integral en CI/CD y observabilidad de pruebas."
+      "Pruebas web y móviles en el sector financiero con Playwright y Postman.",
+      "Desarrollo previo con Oracle APEX, PL/SQL y JavaScript.",
+      "Integración de Codex, Rovo y MCP con Postman y Jira.",
+      "Evidencias en PDF, resultados en Jira y ejecución de pruebas en GitLab."
     ],
     "highlights": [
       {
-        "label": "Proyectos",
-        "value": "7+"
+        "label": "Pruebas web",
+        "value": "Playwright"
       },
       {
-        "label": "Años en IT",
-        "value": "4+"
+        "label": "Pruebas de servicios",
+        "value": "Postman"
       },
       {
-        "label": "Especialidad",
-        "value": "QA + AI + APEX"
+        "label": "QA asistido por IA",
+        "value": "Codex + Rovo"
+      },
+      {
+        "label": "Ejecución automatizada",
+        "value": "GitLab"
       }
-    ]
+    ],
+    "cvCta": {
+      "label": "Descargar CV",
+      "href": "/cv.pdf"
+    }
   },
   "about": {
-    "bio": "Soy QA Engineer y Desarrollador Oracle APEX con base en Paraguay. Mi pasión es el punto donde la automatización, la inteligencia artificial y el desarrollo se encuentran para crear productos de alta confiabilidad. Actualmente enfocado en aplicar IA para optimizar procesos de calidad y desarrollo.",
-    "problemsSolved": "Elimino ineficiencias en el ciclo de QA usando automatización e IA. Resuelvo problemas complejos en sistemas bancarios y aseguro lanzamientos estables mediante pipelines de CI/CD robustos.",
-    "engineeringApproach": "Diseño la calidad desde el primer commit. Utilizo herramientas como GitHub Copilot, Claude y MCP para potenciar la productividad y asegurar que cada línea de código esté validada.",
+    "bio": "Soy Analista Senior de QA con experiencia en pruebas web, móviles y de servicios en el sector financiero. Trabajo en ITAE / Solar Banco desde septiembre de 2025 y tengo experiencia previa en desarrollo con Oracle APEX, PL/SQL y JavaScript. Integro automatización e IA en el flujo de QA.",
+    "problemsSolved": "Conecto los casos de prueba, la ejecución y las evidencias con las tareas de Jira. Trabajo con Playwright para aplicaciones web y con Postman para servicios, comparando datos y consultando las especificaciones de Swagger cuando es necesario.",
+    "engineeringApproach": "Utilizo Rovo para generar casos de prueba y Codex para ejecutar especificaciones de Playwright y preparar colecciones de Postman. Integro estos flujos mediante MCP, genero evidencia en PDF y registro los resultados en Jira. También creé un runner para ejecutar pruebas en GitLab.",
     "values": [
       "Diseño inicial de calidad",
       "Automatización inteligente",
@@ -62,23 +70,34 @@
       {
         "period": "Sept 2025 - Actualidad",
         "title": "QA Analyst | ITAE - Solar Banco",
-        "summary": "Definición y ejecución de estrategias de prueba para plataformas bancarias críticas, automatización funcional y regresión."
+        "summary": "Pruebas bancarias web y móviles Android e iOS, automatización con Playwright y validación de servicios con Postman."
       },
       {
         "period": "Ene 2024 - Sept 2025",
         "title": "QA Analyst | Bancard",
-        "summary": "Automatización de pruebas con JMeter y herramientas de integración continua en el procesador de pagos líder."
+        "summary": "Pruebas de software y automatización con JMeter y Postman; pruebas en terminales POS y trabajo con MySQL y AS400."
       },
       {
         "period": "Oct 2022 - Ene 2024",
         "title": "QA Analyst | Banco Familiar",
-        "summary": "Implementación de automatización funcional con Katalon Studio y SQL para validación de datos financieros."
+        "summary": "Pruebas de software y automatización con JMeter, SoapUI, TestLink y Katalon Studio en el entorno bancario."
       },
       {
         "period": "Dic 2021 - Ene 2024",
         "title": "Software Developer | Kove S.A",
-        "summary": "Desarrollo de software personalizado con Oracle Apex y PL/SQL para diversas entidades bancarias y comerciales."
+        "summary": "Desarrollo de software personalizado, análisis de requerimientos y soluciones con Oracle APEX, PL/SQL, JavaScript y JasperReports."
       }
-    ]
+    ],
+    "education": {
+      "title": "Formación e idiomas",
+      "degree": "Licenciatura en Ciencias Informáticas con énfasis en Sistemas Informáticos",
+      "institution": "Universidad Autónoma de Asunción | 2021 - actualidad",
+      "language": "Inglés B2 Upper Intermediate | EF SET",
+      "certifications": [
+        "Oracle APEX Cloud Developer Certified Professional | Octubre de 2025",
+        "Oracle Certified Foundations Associate | Julio de 2023",
+        "Software Testing Avanzado | Udemy | Julio de 2023"
+      ]
+    }
   }
 }

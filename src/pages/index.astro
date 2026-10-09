@@ -20,11 +20,7 @@ const featured = projects
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 
-const impactMetrics = [
-  { value: "20+", label: "Tests Automatizados", icon: "🧪" },
-  { value: "4+", label: "Años en IT", icon: "📅" },
-  { value: "3", label: "Sistemas Bancarios", icon: "🏦" },
-];
+const impactMetrics = site.home.highlights;
 
 const skillIcons: Record<string, string> = {
   "QA & Automation": "🔬",
@@ -81,11 +77,11 @@ const skillIcons: Record<string, string> = {
           <!-- CTAs -->
           <div class="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 animate-fade-in-up delay-4">
             <Button href={site.home.primaryCta.href} className="w-full sm:w-auto text-center">{site.home.primaryCta.label}</Button>
-            <Button href="/cv.pdf" variant="secondary" className="w-full sm:w-auto text-center">
+            <Button href={site.home.cvCta.href} variant="secondary" className="w-full sm:w-auto text-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
-              Descargar CV
+              {site.home.cvCta.label}
             </Button>
           </div>
 
@@ -106,8 +102,7 @@ const skillIcons: Record<string, string> = {
               <div class={`group relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/20 hover:shadow-[0_0_30px_rgba(6,182,212,0.06)]`}>
                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/[0.04] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 <div class="relative">
-                  <span class="text-2xl mb-2 block">{item.icon}</span>
-                  <p class="text-2xl sm:text-3xl font-bold gradient-text" data-count={item.value}>{item.value}</p>
+                  <p class="text-xl sm:text-2xl font-bold gradient-text">{item.value}</p>
                   <p class="mt-1 text-xs sm:text-sm text-[var(--muted)]">{item.label}</p>
                 </div>
               </div>
@@ -193,7 +188,6 @@ const skillIcons: Record<string, string> = {
   <!-- Connect CTA -->
   <Container className="pb-32">
     <div class="scroll-reveal-scale relative overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-600/20 via-blue-600/15 to-violet-600/20 px-8 py-16 text-center sm:px-16 sm:py-24 border border-white/10">
-      <div class="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
       <!-- Floating orbs -->
       <div class="pointer-events-none absolute top-10 left-10 h-32 w-32 rounded-full bg-cyan-500/10 blur-[60px] animate-float"></div>
       <div class="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-violet-500/10 blur-[60px] animate-float delay-3"></div>

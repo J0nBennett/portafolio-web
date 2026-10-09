@@ -8,17 +8,21 @@
       "JMeter",
       "Katalon Studio",
       "SoapUI",
-      "Test Architecture"
+      "Test Architecture",
+      "Swagger / OpenAPI",
+      "TestLink"
     ]
   },
   {
     "category": "AI Stack & Workflows",
     "items": [
+      "Codex",
+      "Rovo de Jira",
+      "MCP (Atlassian)",
+      "QA asistido por IA",
       "Claude",
       "ChatGPT",
       "GitHub Copilot",
-      "MCP (Model Context Protocol)",
-      "AI-assisted QA",
       "Prompt Engineering"
     ]
   },
@@ -30,7 +34,11 @@
       "Python",
       "JavaScript",
       "SQL",
-      "React (Learning)"
+      "React (Learning)",
+      "Oracle Database",
+      "MySQL",
+      "PostgreSQL",
+      "DBeaver"
     ]
   },
   {
@@ -41,7 +49,11 @@
       "GitHub Actions",
       "GitLab",
       "Linux",
-      "Docker"
+      "Docker",
+      "GitLab Runner",
+      "Jira",
+      "Confluence",
+      "Grafana"
     ]
   }
 ]

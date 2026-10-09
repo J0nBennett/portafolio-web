@@ -1,33 +1,41 @@
 ---
-title: "Agentes Autónomos para QA"
+title: "QA asistido por IA con Codex, Postman y Jira"
 slug: "autonomous-qa-agents"
-summary: "Implementación de agentes inteligentes que navegan aplicaciones web para detectar fallos visuales y de flujo sin scripts rígidos."
-tags: ["testing", "ai", "qa"]
-thumbnail: "/images/thumbs/autonomous-qa-agents.png"
-date: 2025-03-05
+summary: "Integración de Rovo, Codex y MCP para generar casos, ejecutar pruebas con Playwright, preparar colecciones de Postman y registrar evidencias en Jira."
+tags: ["testing", "ai", "qa", "playwright", "postman", "jira"]
+date: 2026-10-09
 ---
 
 ## Contexto
-En aplicaciones con cambios constantes en la UI, los tests E2E tradicionales (Selenium/Cypress) fallan constantemente debido a selectores que cambian, lo que genera un alto costo de mantenimiento.
+El flujo de QA abarca tareas de Jira, casos de prueba, especificaciones de servicios y evidencias de ejecución. Implementé integraciones entre Codex, Postman y Jira para conectar estas actividades con las pruebas web y de APIs.
 
-## El Problema
-El "Flakiness" o inestabilidad de los tests. Pasábamos más tiempo arreglando tests rotos por cambios estéticos que encontrando bugs reales.
+## Problema
+La definición de casos, la consulta de Swagger, la preparación de colecciones y el registro de evidencias se distribuyen entre distintas herramientas. El objetivo del flujo es mantener estas actividades relacionadas con la tarea que se valida.
 
-## Decisiones Técnicas
-1. **Navegación Semántica**: En lugar de buscar `id="btn-01"`, el agente busca "el botón de finalizar compra" analizando el DOM y la accesibilidad.
-2. **Visión por Computadora**: Integración de modelos visuales para detectar regresiones estéticas que el código no captura (colores incorrectos, elementos superpuestos).
-3. **Auto-curación (Self-healing)**: Si un flujo cambia ligeramente, el agente intenta adaptarse y reporta la sugerencia de actualización para el script base.
+## Decisiones técnicas
+- Utilizar Rovo de Jira para generar casos de prueba a partir del contexto de las tareas.
+- Crear especificaciones de Playwright y ejecutarlas con Codex.
+- Conectar Codex con Postman y Postman con Jira.
+- Usar MCP de Atlassian para consultar y validar la tarea; consultar Swagger mediante otro MCP cuando hace falta.
+- Preparar colecciones de Postman para ejecución manual y comparar los datos necesarios para validar los servicios.
+- Generar evidencia en PDF y registrar el resultado como comentario en Jira.
+- Crear un runner para ejecutar las pruebas en GitLab.
 
-## Arquitectura
-- **Engine**: Playwright como base de automatización.
-- **Inteligencia**: LangChain + GPT-4o-mini para la toma de decisiones sobre el siguiente paso a ejecutar.
-- **Validación**: Comparación de snapshots visuales de alta precisión.
+## Arquitectura del flujo
+### Pruebas web
+Tarea en Jira → casos generados con Rovo → especificaciones de Playwright → ejecución con Codex → evidencia en PDF → comentario en Jira.
+
+### Pruebas de servicios
+Tarea consultada mediante MCP de Atlassian → consulta de Swagger cuando corresponde → comparación de datos → colección de Postman → ejecución manual → comentario con resultados en Jira.
+
+### Ejecución en GitLab
+Un runner permite ejecutar las pruebas en GitLab, complementando la ejecución local y manual.
+
+## Implementación humana e IA
+Mi trabajo incluye crear las especificaciones de Playwright, integrar las herramientas y preparar el runner. Rovo asiste en la generación de casos y Codex en la ejecución de pruebas y la preparación de colecciones y evidencias.
 
 ## Resultados
-- **Mantenimiento Cero**: Reducción del 80% en el tiempo dedicado a actualizar selectores.
-- **Cobertura Exploratoria**: El agente encontró bugs en caminos que no estaban cubiertos por los tests manuales ni los scripts fijos.
-- **Confiabilidad**: El pipeline de CI volvió a ser verde y confiable para el equipo de desarrollo.
+El flujo conecta la definición de casos, las pruebas web y de servicios y el registro de evidencias con las tareas de Jira. Incluye colecciones para ejecución manual y un runner para ejecutar pruebas en GitLab.
 
-## Lecciones Aprendidas
-- La IA es excelente para manejar la incertidumbre de las interfaces modernas.
-- Es vital poner "barreras" (guardrails) al agente para que no entre en bucles infinitos durante la exploración.
+## Lecciones aprendidas
+La integración debe conservar el contexto de la tarea al pasar entre herramientas. Las pruebas web y de servicios comparten el registro de resultados, aunque sus mecanismos de ejecución son diferentes.

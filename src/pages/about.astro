@@ -89,7 +89,7 @@ const skillIcons: Record<string, string> = {
     </section>
 
     <!-- Timeline -->
-    <section aria-labelledby="timeline" class="scroll-reveal">
+    <section aria-labelledby="timeline" class="mb-14 scroll-reveal">
       <h2 id="timeline" class="mb-6 text-xl font-bold text-[var(--text-heading)]">Trayectoria</h2>
       <div class="relative">
         <!-- Vertical gradient line -->
@@ -116,6 +116,18 @@ const skillIcons: Record<string, string> = {
           }
         </div>
       </div>
+    </section>
+
+    <section aria-labelledby="education" class="scroll-reveal">
+      <h2 id="education" class="mb-6 text-xl font-bold text-[var(--text-heading)]">{site.about.education.title}</h2>
+      <Card>
+        <h3 class="font-semibold text-[var(--text-heading)]">{site.about.education.degree}</h3>
+        <p class="mt-2 text-sm text-[var(--muted)]">{site.about.education.institution}</p>
+        <p class="mt-2 text-sm text-[var(--muted)]">{site.about.education.language}</p>
+        <ul class="mt-4 space-y-2 text-sm text-[var(--muted)]">
+          {site.about.education.certifications.map((certification: string) => <li>{certification}</li>)}
+        </ul>
+      </Card>
     </section>
   </Container>
 </BaseLayout>

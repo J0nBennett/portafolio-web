@@ -37,7 +37,10 @@ jobs:
           echo "SITE_URL=https://${GITHUB_REPOSITORY_OWNER}.github.io" >> "$GITHUB_ENV"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Check types and content
+        run: npm run check
 
       - name: Build site
         run: npm run build
