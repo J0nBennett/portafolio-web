@@ -56,7 +56,7 @@
     }
   },
   "about": {
-    "bio": "Soy Analista Senior de QA con experiencia en pruebas web, móviles y de servicios en el sector financiero. Trabajo en ITAE / Solar Banco desde septiembre de 2025 y tengo experiencia previa en desarrollo con Oracle APEX, PL/SQL y JavaScript. Integro automatización e IA en el flujo de QA.",
+    "bio": "Soy Analista Senior de QA con experiencia en pruebas web, móviles y de servicios en el sector financiero. Trabajo en ITAE / Solar Banco desde septiembre de 2024 y tengo experiencia previa en desarrollo con Oracle APEX, PL/SQL y JavaScript. Integro automatización e IA en el flujo de QA.",
     "problemsSolved": "Conecto los casos de prueba, la ejecución y las evidencias con las tareas de Jira. Trabajo con Playwright para aplicaciones web y con Postman para servicios, comparando datos y consultando las especificaciones de Swagger cuando es necesario.",
     "engineeringApproach": "Utilizo Rovo para generar casos de prueba y Codex para ejecutar especificaciones de Playwright y preparar colecciones de Postman. Integro estos flujos mediante MCP, genero evidencia en PDF y registro los resultados en Jira. También creé un runner para ejecutar pruebas en GitLab.",
     "values": [
@@ -68,12 +68,12 @@
     ],
     "timeline": [
       {
-        "period": "Sept 2025 - Actualidad",
+        "period": "Sept 2024 - Actualidad",
         "title": "QA Analyst | ITAE - Solar Banco",
         "summary": "Pruebas bancarias web y móviles Android e iOS, automatización con Playwright y validación de servicios con Postman."
       },
       {
-        "period": "Ene 2024 - Sept 2025",
+        "period": "Ene 2024 - Sept 2024",
         "title": "QA Analyst | Bancard",
         "summary": "Pruebas de software y automatización con JMeter y Postman; pruebas en terminales POS y trabajo con MySQL y AS400."
       },
