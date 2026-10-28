@@ -1,7 +1,11 @@
 ---
+import { getLocale, translator, localizedPath } from "../../utils/i18n";
 import Card from "../ui/Card.astro";
 import Badge from "../ui/Badge.astro";
-import { withBasePath } from "../../utils/url";
+
+const locale = getLocale(Astro.url.pathname);
+const t = translator(locale);
+const withBasePath = (value: string, base = import.meta.env.BASE_URL) => localizedPath(value, locale, base);
 
 interface ProjectData {
   title: string;
@@ -53,7 +57,7 @@ const basePath = import.meta.env.BASE_URL;
             {project.title}
           </a>
         </h3>
-        {project.featured && <Badge label="Featured" />}
+        {project.featured && <Badge label={t("Featured")} />}
       </div>
       <p class="text-sm text-[var(--muted)] leading-relaxed">{project.summary}</p>
       <ul class="relative z-10 flex flex-wrap gap-2">
@@ -66,7 +70,7 @@ const basePath = import.meta.env.BASE_URL;
         }
       </ul>
       <p class="relative z-10 mt-auto text-xs text-[var(--muted)]">
-        <span class="text-cyan-500/60">Stack:</span> {project.stack.join(" • ")}
+        <span class="text-cyan-500/60">{t("Stack:")}</span> {project.stack.join(" • ")}
       </p>
       <div class="relative z-10 flex items-center justify-between mt-6">
         <div class="flex gap-4 text-sm">
@@ -76,7 +80,7 @@ const basePath = import.meta.env.BASE_URL;
             rel="noopener noreferrer"
             class="focus-ring group/link inline-flex items-center gap-1 text-[var(--muted)] transition-colors hover:text-cyan-400"
           >
-            Repo
+            {t("Repo")}
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
               <path d="M7 17L17 7" /><path d="M7 7h10v10" />
             </svg>
@@ -88,7 +92,7 @@ const basePath = import.meta.env.BASE_URL;
               rel="noopener noreferrer"
               class="focus-ring group/link inline-flex items-center gap-1 text-[var(--muted)] transition-colors hover:text-cyan-400"
             >
-              Demo
+              {t("Demo")}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
                 <path d="M7 17L17 7" /><path d="M7 7h10v10" />
               </svg>
@@ -97,7 +101,7 @@ const basePath = import.meta.env.BASE_URL;
         </div>
 
         <div class="flex items-center text-xs font-semibold uppercase tracking-wider text-cyan-400 opacity-0 transition-all duration-300 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0">
-          Ver Proyecto
+          {t("Ver Proyecto")}
           <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </div>
       </div>

@@ -28,6 +28,25 @@ assert(pages.length > 0, "Build output is empty");
 for (const filename of pages) {
   const html = await readFile(filename, "utf8");
   const label = path.relative(output, filename);
+  const isEnglish = label.replaceAll(path.sep, "/").startsWith("en/");
+  if (label !== "404.html") {
+    assert.match(html, new RegExp(`<html[^>]+lang="${isEnglish ? "en" : "es"}"`), `${label}: document language`);
+    const alternates = [...html.matchAll(/<link\b[^>]*>/gi)].map(([tag]) => attributes(tag)).filter((attrs) => attrs.rel === "alternate");
+    for (const lang of ["es", "en", "x-default"]) assert(alternates.some((attrs) => attrs.hreflang === lang), `${label}: missing ${lang} alternate`);
+    const switcher = html.match(/<nav\b[^>]*data-language-switcher[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+    assert(switcher, `${label}: missing visible language selector`);
+    const route = label.replaceAll(path.sep, "/").replace(/^en\//, "").replace(/index\.html$/, "");
+    const languageLinks = [...switcher.matchAll(/<a\b[^>]*>/g)].map(([tag]) => attributes(tag));
+    for (const lang of ["es", "en"]) {
+      const expected = `${base}${lang === "en" ? "en/" : ""}${route}`;
+      const link = languageLinks.find((attrs) => attrs.lang === lang);
+      assert.equal(link?.href, expected, `${label}: language switch must preserve the page`);
+      assert.equal(link?.["aria-current"], lang === (isEnglish ? "en" : "es") ? "page" : undefined, `${label}: selected language`);
+    }
+    const cv = isEnglish ? "cv-en.pdf" : "cv.pdf";
+    assert(html.includes(`href="${base}${cv}"`), `${label}: incorrect CV language`);
+    if (isEnglish) assert(!/Ir al contenido|Volver a Proyectos|Disponible para proyectos|Sobre mí|Envíame un mensaje/.test(html), `${label}: untranslated interface`);
+  }
   const policies = [...html.matchAll(/<meta\b[^>]*>/gi)]
     .map(([tag]) => attributes(tag))
     .filter((attrs) => attrs["http-equiv"]?.toLowerCase() === "content-security-policy");
@@ -78,6 +97,7 @@ for (const [collection, route] of [["projects", "projects"], ["case-studies", "c
     const source = await readFile(filename, "utf8");
     const slug = source.match(/^slug:\s*["']?([^"'\r\n]+)["']?\s*$/m)?.[1]?.trim() ?? path.basename(filename, ".mdx");
     assert(existsSync(path.join(output, route, slug, "index.html")), `Missing content route: ${route}/${slug}`);
+    assert(existsSync(path.join(output, "en", route, slug, "index.html")), `Missing English content route: ${route}/${slug}`);
   }
 }
 
@@ -86,6 +106,10 @@ assert.match(contact, /name="_captcha"\s+value="true"/, "CAPTCHA must remain ena
 assert.match(contact, /name="_honey"/, "Honeypot must remain present");
 const nextField = [...contact.matchAll(/<input\b[^>]*>/gi)].map(([tag]) => attributes(tag)).find((attrs) => attrs.name === "_next");
 assert.equal(nextField?.value, new URL(`${base}contact/?sent=true`, origin).href, "Form redirect must respect the configured site and base");
+const englishContact = await readFile(path.join(output, "en/contact/index.html"), "utf8");
+assert.match(englishContact, /name="_captcha"\s+value="true"/, "English CAPTCHA must remain enabled");
+const englishNext = [...englishContact.matchAll(/<input\b[^>]*>/gi)].map(([tag]) => attributes(tag)).find((attrs) => attrs.name === "_next");
+assert.equal(englishNext?.value, new URL(`${base}en/contact/?sent=true`, origin).href, "English form must return to English contact");
 const fallback = await readFile(path.join(output, "404.html"), "utf8");
 assert(fallback.includes(`href="${base}"`), "404 must return to the configured base");
 console.log(`Verified CSP, script hashes, local links, content routes, contact protection and 404 for ${pages.length} pages (base ${base}).`);

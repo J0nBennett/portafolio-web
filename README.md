@@ -67,6 +67,19 @@ En Settings → Rules → Rulesets, proteger `main`: exigir pull request, revisi
 
 GitHub Pages no aplica archivos `_headers` ni permite configurar cabeceras HTTP arbitrarias desde Astro. La CSP en `<meta>` no sustituye `X-Content-Type-Options: nosniff` ni una protección HTTP `frame-ancestors 'none'` / `X-Frame-Options: DENY`. Para esos controles hace falta una capa de entrega compatible; esta corrección mantiene GitHub Pages y no afirma haberlos habilitado.
 
+## Español e inglés
+
+El español conserva las URL existentes. La versión inglesa vive en `/en/`; el selector de la cabecera conserva la página, los parámetros y el fragmento al cambiar de idioma. Los enlaces internos y las descargas del CV siguen el idioma seleccionado, sin traducción automática en el navegador ni dependencias nuevas.
+
+- Datos profesionales: `src/data/site.json` y `src/data/site.en.json`.
+- Traducciones de interfaz: `src/data/ui.en.json`, usando el texto español como clave.
+- Contenido inglés: `src/content/en/`, con los mismos nombres y slugs de las colecciones españolas.
+- Plantillas compartidas: `src/pages/en/[...path].astro` reutiliza las páginas y layouts del sitio.
+- SEO: atributo `lang`, canonical y alternates `es`, `en` y `x-default` por página; ambas versiones se incluyen en el sitemap.
+- CV: `/cv.pdf` en español y `/cv-en.pdf` en inglés. Los datos editables del inglés están en `docs/cv-en.json`; se puede regenerar con `python scripts/build-cv.py` teniendo ReportLab instalado. El PDF ya generado forma parte del repositorio; Python no es necesario para desplegar el sitio.
+
+Al agregar contenido, crear también su traducción con el mismo slug. `npm run check:build` verifica las dos rutas, la selección de idioma y los CV, además de los controles de seguridad.
+
 ## Release checklist
 1. Definir `SITE_URL` y `BASE_PATH` según tipo de Pages:
    - user site: `SITE_URL=https://<owner>.github.io`, `BASE_PATH=/`

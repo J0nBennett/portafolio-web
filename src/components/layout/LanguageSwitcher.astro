@@ -1,0 +1,27 @@
+---
+import { getLocale, languagePath, translator } from "../../utils/i18n";
+
+const locale = getLocale(Astro.url.pathname);
+const t = translator(locale);
+---
+<nav data-language-switcher aria-label={t("Idioma")} class="flex shrink-0 items-center rounded-lg border border-white/10 bg-white/[0.03] p-1 text-xs">
+  {(["es", "en"] as const).map((language) => (
+    <a
+      href={languagePath(Astro.url.pathname, language)}
+      lang={language}
+      hreflang={language}
+      aria-current={locale === language ? "page" : undefined}
+      class:list={["focus-ring rounded-md px-2.5 py-2 transition-colors", locale === language ? "bg-cyan-500/15 font-semibold text-cyan-300" : "text-[var(--muted)] hover:text-[var(--text-heading)]"]}
+    >
+      {language === "es" ? "Español" : "English"}
+    </a>
+  ))}
+</nav>
+<script>
+  document.querySelectorAll<HTMLAnchorElement>("[data-language-switcher] a").forEach((link) => {
+    const target = new URL(link.href);
+    target.search = window.location.search;
+    target.hash = window.location.hash;
+    link.href = target.href;
+  });
+</script>

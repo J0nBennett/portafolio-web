@@ -1,4 +1,5 @@
 ---
+import { getLocale, translator } from "../../utils/i18n";
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/layout/Container.astro";
@@ -6,7 +7,10 @@ import SectionTitle from "../../components/ui/SectionTitle.astro";
 import ProjectCard from "../../components/projects/ProjectCard.astro";
 import ProjectFilters from "../../components/projects/ProjectFilters.astro";
 
-const projects = (await getCollection("projects")).sort(
+const locale = getLocale(Astro.url.pathname);
+const t = translator(locale);
+
+const projects = (await getCollection(locale === "en" ? "projects-en" : "projects")).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 
@@ -14,16 +18,16 @@ const allTags = [...new Set(projects.flatMap((project) => project.data.tags))].s
 ---
 
 <BaseLayout
-  title="Proyectos | Portfolio"
-  description="Listado de proyectos con enfoque de ingeniería."
+  title={t("Proyectos | Portfolio")}
+  description={t("Listado de proyectos con enfoque de ingeniería.")}
   image="/og/projects.png"
 >
   <Container className="py-16 sm:py-20">
     <div class="scroll-reveal">
       <SectionTitle
         as="h1"
-        title="Proyectos"
-        subtitle="Cada proyecto documenta problema, solución y decisiones técnicas."
+        title={t("Proyectos")}
+        subtitle={t("Cada proyecto documenta problema, solución y decisiones técnicas.")}
       />
     </div>
     <div class="scroll-reveal">

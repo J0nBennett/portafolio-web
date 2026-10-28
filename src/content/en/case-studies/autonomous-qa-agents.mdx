@@ -1,0 +1,48 @@
+---
+title: AI-assisted QA with Codex, Postman and Jira
+slug: autonomous-qa-agents
+summary: Integrating Rovo, Codex and MCP to generate cases, run Playwright
+  tests, prepare Postman collections and record evidence in Jira.
+tags:
+  - testing
+  - ai
+  - qa
+  - playwright
+  - postman
+  - jira
+date: 2026-10-09
+---
+
+## Context
+The QA workflow spans Jira issues, test cases, service specifications and execution evidence. I implemented integrations between Codex, Postman and Jira to connect these activities with web and API testing.
+
+## Problem
+Case definition, Swagger lookups, collection preparation and evidence recording are distributed across multiple tools. The workflow aims to keep these activities linked to the issue being validated.
+
+## Technical Decisions
+- Use Jira Rovo to generate test cases from issue context.
+- Create Playwright specifications and execute them with Codex.
+- Connect Codex to Postman, and Postman to Jira.
+- Use Atlassian MCP to consult and validate issues, and another MCP to consult Swagger when needed.
+- Prepare Postman collections for manual execution and compare the data needed to validate services.
+- Generate PDF evidence and record results as Jira comments.
+- Create a runner to execute tests in GitLab.
+
+## Workflow Architecture
+### Web testing
+Jira issue → Rovo-generated cases → Playwright specifications → Codex execution → PDF evidence → Jira comment.
+
+### API testing
+Issue retrieved through Atlassian MCP → Swagger lookup when needed → data comparison → Postman collection → manual execution → Jira results comment.
+
+### GitLab execution
+A runner supports test execution in GitLab, complementing local and manual execution.
+
+## Human and AI Contributions
+My work includes creating Playwright specifications, integrating the tools and preparing the runner. Rovo assists with case generation, while Codex assists with execution and the preparation of collections and evidence.
+
+## Results
+The workflow connects case definition, web and API tests, and execution evidence to Jira issues. It includes collections for manual execution and a runner for GitLab tests.
+
+## Lessons Learned
+Integrations must preserve issue context as information moves between tools. Web and API tests share the same results-recording process, although their execution mechanisms differ.

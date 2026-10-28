@@ -1,6 +1,9 @@
 ---
 import siteData from "../../data/site.json";
 import { toAbsoluteUrl } from "../../utils/url";
+import { getLocale, languagePath } from "../../utils/i18n";
+
+const locale = getLocale(Astro.url.pathname);
 
 interface Props {
   title: string;
@@ -33,6 +36,11 @@ const ogImage = toAbsoluteUrl(image, siteOrigin, basePath);
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
+<link rel="alternate" hreflang="es" href={new URL(languagePath(Astro.url.pathname, "es"), siteOrigin).href} />
+<link rel="alternate" hreflang="en" href={new URL(languagePath(Astro.url.pathname, "en"), siteOrigin).href} />
+<link rel="alternate" hreflang="x-default" href={new URL(languagePath(Astro.url.pathname, "es"), siteOrigin).href} />
+<meta property="og:locale" content={locale === "en" ? "en_GB" : "es_PY"} />
+<meta property="og:locale:alternate" content={locale === "en" ? "es_PY" : "en_GB"} />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content={ogTitle} />

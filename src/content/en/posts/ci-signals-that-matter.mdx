@@ -1,0 +1,41 @@
+---
+title: CI Signals That Actually Matter
+slug: ci-signals-that-actually-matter
+summary: The CI signals I prioritise to make release decisions with less noise
+  and clearer engineering judgement.
+tags:
+  - ci
+  - quality
+  - testing
+  - engineering
+date: 2026-02-15
+---
+
+As a pipeline grows, the question shifts from how many metrics we have to which signals actually change a decision.
+
+I have seen the same pattern across teams: extensive dashboards with little clarity when it is time to approve a release. The issue is often a lack of prioritisation rather than a lack of data.
+
+## 1) Release Health Signals I Prioritise
+- **Critical-suite stability:** Unexplained smoke-test or core-workflow failures block release.
+- **Open severe defects:** A known critical bug outweighs numerous cosmetic green metrics.
+- **Recovery time:** Slow recovery increases operational risk.
+
+## 2) Useful Signals That Do Not Always Block Release
+- Incremental module coverage.
+- Weekly flakiness trends.
+- Average pipeline duration.
+
+These signals guide engineering improvements, but do not always need to stop delivery.
+
+## 3) A Common Mistake: Mixing Diagnosis and Decisions
+Many organisations use one dashboard for both monitoring and release decisions. I separate:
+- **Release gates:** A small set of explicit, auditable rules.
+- **Quality observability:** Richer metrics for continuous improvement.
+
+## 4) Implementing This Without Bureaucracy
+1. Define no more than 3-5 blocking rules.
+2. Publish CI evidence for each rule.
+3. Review the rules every 6-8 weeks to keep them relevant.
+
+## Closing Thoughts
+CI maturity is measured by how effectively it reduces uncertainty in delivery decisions, not by its number of checks.
