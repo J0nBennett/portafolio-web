@@ -5,6 +5,10 @@ import SectionTitle from "../components/ui/SectionTitle.astro";
 import Card from "../components/ui/Card.astro";
 import site from "../data/site.json";
 import socials from "../data/socials.json";
+import { withBasePath } from "../utils/url";
+
+const successUrl = new URL(withBasePath("/contact/", import.meta.env.BASE_URL), Astro.site ?? site.baseUrl);
+successUrl.searchParams.set("sent", "true");
 ---
 
 <BaseLayout title="Contacto | Portfolio" description="Canales de contacto profesional.">
@@ -23,17 +27,16 @@ import socials from "../data/socials.json";
         <Card>
           <h2 class="text-lg font-bold text-[var(--text-heading)] mb-6">Envíame un mensaje</h2>
           <form
-            action="https://formsubmit.co/jonbennettpy@gmail.com"
+            action={`https://formsubmit.co/${site.email}`}
             method="POST"
             class="space-y-5"
             id="contact-form"
           >
             <!-- Honeypot anti-spam -->
-            <input type="text" name="_honey" style="display:none" />
-            <!-- Disable captcha -->
-            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <input type="hidden" name="_captcha" value="true" />
             <!-- Success redirect -->
-            <input type="hidden" name="_next" value={`${site.baseUrl}/contact?sent=true`} />
+            <input type="hidden" name="_next" value={successUrl.toString()} />
 
             <div class="grid gap-5 sm:grid-cols-2">
               <div>

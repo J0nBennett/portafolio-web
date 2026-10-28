@@ -33,7 +33,7 @@ const allTags = [...new Set(projects.flatMap((project) => project.data.tags))].s
       {
         projects.map((project, i) => (
           <div data-project-card data-tags={project.data.tags.join(",")} class={`scroll-reveal stagger-${(i % 6) + 1}`}>
-            <ProjectCard project={project.data} slug={project.slug} />
+            <ProjectCard project={project.data} slug={project.id} />
           </div>
         ))
       }
