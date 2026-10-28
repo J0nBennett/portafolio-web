@@ -5,7 +5,7 @@ import DocLayout from "../../layouts/DocLayout.astro";
 export async function getStaticPaths() {
   const caseStudies = await getCollection("case-studies");
   return caseStudies.map((caseStudy) => ({
-    params: { slug: caseStudy.slug },
+    params: { slug: caseStudy.id },
     props: { caseStudy },
   }));
 }

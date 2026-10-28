@@ -3,7 +3,7 @@ import { withBasePath } from "../../utils/url";
 
 interface Props {
   post: {
-    slug: string;
+    id: string;
     data: {
       title: string;
       date: Date;
@@ -29,7 +29,7 @@ const basePath = import.meta.env.BASE_URL;
     </time>
     
     <h3 class="mt-3 text-xl font-bold text-[var(--text-heading)] transition-colors group-hover:text-cyan-400">
-      <a class="focus-ring" href={withBasePath(`/writing/${post.slug}/`, basePath)}>
+      <a class="focus-ring" href={withBasePath(`/writing/${post.id}/`, basePath)}>
         <span class="absolute inset-0"></span>
         {post.data.title}
       </a>

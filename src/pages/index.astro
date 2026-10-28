@@ -156,7 +156,7 @@ const skillIcons: Record<string, string> = {
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {featured.map((project, i) => (
         <div class={`scroll-reveal stagger-${i + 1}`}>
-          <ProjectCard project={project.data} slug={project.slug} />
+          <ProjectCard project={project.data} slug={project.id} />
         </div>
       ))}
     </div>

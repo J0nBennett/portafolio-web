@@ -9,18 +9,22 @@ Portfolio técnico reusable, orientado a demostrar criterio de ingeniería con c
 - GitHub Actions para deploy
 
 ## Setup local
+Usar Node.js 24 LTS (`.nvmrc`). El lockfile forma parte del repositorio.
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
 ## Build
 ```bash
 npm run build
+npm run check:build
 ```
 
 ## Deploy en GitHub Pages
-El workflow está en `/.github/workflows/deploy.yml` y se ejecuta al hacer push a `main`.
+El workflow está en `/.github/workflows/deploy.yml`. Las pull requests ejecutan tipos, auditoría de dependencias, build y verificación del HTML generado, sin permisos de despliegue. Solo `main` puede publicar en Pages.
+
+Las Actions están fijadas a commits revisables. Dependabot propone actualizaciones semanales de npm y GitHub Actions; los permisos `pages: write` e `id-token: write` solo pertenecen al job de despliegue.
 
 ### Configuración de URL/base para Pages
 Este repo soporta:
@@ -35,12 +39,33 @@ La acción detecta automáticamente el tipo de repositorio y exporta:
 `astro.config.mjs` consume estas variables para construir rutas correctas.
 
 ### Fallback 404 para project site
-Existe `public/404.html` para cubrir rutas desconocidas en GitHub Pages.
+`src/pages/404.astro` genera `404.html` con la misma CSP que las demás páginas.
 
-- En project site (`username.github.io/repo/...`) la página infiere `repo` como base y redirige a `/<repo>/`.
+- En project site (`username.github.io/repo/...`) la página usa la base configurada y redirige a `/<repo>/`.
 - En user site (`username.github.io/...`) redirige a `/`.
 
 Esto evita quedar en una 404 dura al abrir URLs inexistentes o rutas antiguas.
+
+## Seguridad
+
+Astro 7 usa loaders de contenido y conserva los slugs del frontmatter como identificadores de ruta. La CSP se genera durante el build con hashes de los scripts; no permite `unsafe-inline` ni `unsafe-eval` en JavaScript. Solo los atributos de estilo admiten estilos inline para mantener compatibilidad con el resaltado MDX. El formulario mantiene honeypot y CAPTCHA de FormSubmit; no se debe desactivar al editarlo.
+
+Validación antes de publicar:
+
+```bash
+npm run check
+npm audit --audit-level=low
+npm run build
+npm run check:build
+```
+
+La verificación del build recorre todas las páginas y comprueba la CSP, hashes de scripts, enlaces locales, rutas MDX, CAPTCHA y destino del 404. Para un user site, ejecutar build y verificación con `BASE_PATH=/`.
+
+### Ajustes externos pendientes
+
+En Settings → Rules → Rulesets, proteger `main`: exigir pull request, revisión, el check `Validate and build`, bloquear force pushes y borrado. Configurar Pages para publicar solo desde `main`. Estas opciones pertenecen a la cuenta de GitHub y no se activan mediante archivos del repositorio.
+
+GitHub Pages no aplica archivos `_headers` ni permite configurar cabeceras HTTP arbitrarias desde Astro. La CSP en `<meta>` no sustituye `X-Content-Type-Options: nosniff` ni una protección HTTP `frame-ancestors 'none'` / `X-Frame-Options: DENY`. Para esos controles hace falta una capa de entrega compatible; esta corrección mantiene GitHub Pages y no afirma haberlos habilitado.
 
 ## Release checklist
 1. Definir `SITE_URL` y `BASE_PATH` según tipo de Pages:
