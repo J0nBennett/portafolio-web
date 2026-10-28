@@ -1,20 +1,24 @@
 ---
+import { getLocale, translator, getSite } from "../utils/i18n";
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/layout/Container.astro";
 import SectionTitle from "../components/ui/SectionTitle.astro";
 import Button from "../components/ui/Button.astro";
 import ProjectCard from "../components/projects/ProjectCard.astro";
-import site from "../data/site.json";
 import PostCard from "../components/writing/PostCard.astro";
 import skills from "../data/skills.json";
 
-const posts = await getCollection("posts");
+const locale = getLocale(Astro.url.pathname);
+const t = translator(locale);
+const site = getSite(locale);
+
+const posts = await getCollection(locale === "en" ? "posts-en" : "posts");
 const latestPosts = posts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 
-const projects = await getCollection("projects");
+const projects = await getCollection(locale === "en" ? "projects-en" : "projects");
 const featured = projects
   .filter((project) => project.data.featured)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -30,7 +34,7 @@ const skillIcons: Record<string, string> = {
 };
 ---
 
-<BaseLayout title={`${site.siteName} | Inicio`} description={site.description} image="/og/home.png">
+<BaseLayout title={`${site.siteName} | ${t("Inicio")}`} description={site.description} image="/og/home.png">
   <!-- Hero -->
   <Container className="pt-12 pb-12 sm:pt-28 sm:pb-20">
     <section class="relative">
@@ -45,7 +49,7 @@ const skillIcons: Record<string, string> = {
           <div class="flex flex-wrap items-center gap-3 animate-fade-in-up">
             <span class="availability-badge">
               <span class="availability-dot"></span>
-              Disponible para proyectos
+              {t("Disponible para proyectos")}
             </span>
             <p class="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-1.5 text-xs sm:text-sm text-cyan-400">
               <span class="leading-tight">{site.roles[0]}</span>
@@ -53,7 +57,7 @@ const skillIcons: Record<string, string> = {
           </div>
 
           <h1 class="mt-6 text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl animate-fade-in-up delay-1">
-            <span class="text-[var(--text-heading)]">Hola, soy </span>
+            <span class="text-[var(--text-heading)]">{t("Hola, soy")} </span>
             <span class="gradient-text">{site.author}</span>
           </h1>
 
@@ -63,7 +67,7 @@ const skillIcons: Record<string, string> = {
 
           <!-- How I work -->
           <div class="mt-8 animate-fade-in-up delay-3">
-            <p class="text-sm font-semibold text-[var(--text-heading)] uppercase tracking-wider">Cómo trabajo</p>
+            <p class="text-sm font-semibold text-[var(--text-heading)] uppercase tracking-wider">{t("Cómo trabajo")}</p>
             <ul class="mt-3 space-y-2 text-sm text-[var(--muted)]">
               {site.home.differentiators.map((item: string) => (
                 <li class="flex items-start gap-2">
@@ -103,7 +107,7 @@ const skillIcons: Record<string, string> = {
                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/[0.04] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 <div class="relative">
                   <p class="text-xl sm:text-2xl font-bold gradient-text">{item.value}</p>
-                  <p class="mt-1 text-xs sm:text-sm text-[var(--muted)]">{item.label}</p>
+                  <p class="mt-1 text-xs sm:text-sm text-[var(--muted)]">{t(item.label)}</p>
                 </div>
               </div>
             ))
@@ -119,9 +123,9 @@ const skillIcons: Record<string, string> = {
       <div class="pointer-events-none absolute -right-24 -bottom-24 h-64 w-64 rounded-full bg-blue-500/5 blur-[80px]"></div>
       
       <div class="relative">
-        <h2 class="text-2xl font-bold text-[var(--text-heading)] sm:text-3xl">Expertise & Skills</h2>
+        <h2 class="text-2xl font-bold text-[var(--text-heading)] sm:text-3xl">{t("Expertise & Skills")}</h2>
         <p class="mt-3 text-[var(--muted)] max-w-2xl">
-          Dominio técnico enfocado en automatización de calidad, desarrollo ágil y soluciones asistidas por IA.
+          {t("Dominio técnico enfocado en automatización de calidad, desarrollo ágil y soluciones asistidas por IA.")}
         </p>
 
         <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -134,7 +138,7 @@ const skillIcons: Record<string, string> = {
               <ul class="flex flex-wrap gap-2">
                 {skillGroup.items.map((skill: string) => (
                   <li class="rounded-md border border-white/[0.06] bg-white/[0.04] px-2.5 py-1 text-xs text-[var(--muted)] transition-all duration-200 hover:border-cyan-500/20 hover:text-cyan-400 hover:bg-cyan-500/5">
-                    {skill}
+                    {t(skill)}
                   </li>
                 ))}
               </ul>
@@ -149,8 +153,8 @@ const skillIcons: Record<string, string> = {
   <Container className="pb-24">
     <div class="scroll-reveal">
       <SectionTitle
-        title="Proyectos Destacados"
-        subtitle="Selección de entregas con foco en arquitectura, rendimiento y mantenibilidad."
+        title={t("Proyectos Destacados")}
+        subtitle={t("Selección de entregas con foco en arquitectura, rendimiento y mantenibilidad.")}
       />
     </div>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -162,7 +166,7 @@ const skillIcons: Record<string, string> = {
     </div>
     <div class="mt-12 flex justify-center scroll-reveal">
       <Button href="/projects" variant="secondary" className="group">
-        Ver todos los proyectos
+        {t("Ver todos los proyectos")}
         <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </Button>
     </div>
@@ -172,8 +176,8 @@ const skillIcons: Record<string, string> = {
   <Container className="pb-24">
     <div class="scroll-reveal">
       <SectionTitle
-        title="Últimos Artículos"
-        subtitle="Explorando las fronteras del testing, la IA y el desarrollo moderno."
+        title={t("Últimos Artículos")}
+        subtitle={t("Explorando las fronteras del testing, la IA y el desarrollo moderno.")}
       />
     </div>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -195,18 +199,18 @@ const skillIcons: Record<string, string> = {
       <div class="relative z-10">
         <span class="availability-badge mx-auto mb-6">
           <span class="availability-dot"></span>
-          Disponible para nuevos proyectos
+          {t("Disponible para nuevos proyectos")}
         </span>
         <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-          ¿Listo para elevar la calidad de tu producto?
+          {t("¿Listo para elevar la calidad de tu producto?")}
         </h2>
         <p class="mx-auto mt-6 max-w-2xl text-lg text-cyan-100/80">
-          Actualmente disponible para nuevos desafíos en QA Automation, Oracle APEX o consultoría técnica.
+          {t("Actualmente disponible para nuevos desafíos en QA Automation, Oracle APEX o consultoría técnica.")}
         </p>
         <div class="mt-10 flex flex-wrap justify-center gap-4">
-          <Button href="/contact" size="lg">Hablemos ahora</Button>
+          <Button href="/contact" size="lg">{t("Hablemos ahora")}</Button>
           <Button href="mailto:jonbennettpy@gmail.com" variant="secondary" size="lg">
-            Enviar email
+            {t("Enviar email")}
           </Button>
         </div>
       </div>

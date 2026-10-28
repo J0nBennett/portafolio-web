@@ -1,0 +1,38 @@
+---
+title: "AI Dev Guardian: Security with LLMs"
+slug: ai-dev-guardian-security
+summary: Implementing an automated security review system with language models
+  to identify risks early in development.
+tags:
+  - ai
+  - security
+  - automation
+thumbnail: /images/thumbs/ai-dev-guardian-study.png
+date: 2025-02-15
+---
+
+## Context
+Security can become a bottleneck in fast-moving software development. The team needed a way to detect common vulnerabilities without waiting for external audits or slow scans.
+
+## The Problem
+Traditional static application security testing tools can produce many false positives, leading developers to overlook alerts. We needed context to distinguish dangerous patterns from legitimate usage.
+
+## Technical Decisions
+1. **Language models for triage:** We used GPT-4o to analyse static-tool findings and reduce noise.
+2. **Local agent analysis:** We implemented an agent that runs locally, limiting sensitive code leaving the controlled environment to cases where it is needed.
+3. **Natural-language reports:** The tool explains why a finding may be a risk and suggests a correction.
+
+## Architecture
+The CLI:
+1. Scans code for suspicious patterns.
+2. Sends contextually relevant snippets to the AI.
+3. Classifies severity using the OWASP framework.
+
+## Results
+- **Assisted triage:** Contextual analysis of security findings with language models.
+- **Earlier fixes:** Developers began addressing issues within the same pull request using the suggestions.
+- **Security awareness:** The team became more aware of secure coding practices.
+
+## Lessons Learned
+- AI supports security experts rather than replacing them.
+- Related files and the intent behind code are essential context for accurate LLM analysis.

@@ -1,0 +1,28 @@
+{
+  "name": "Jonathan Camelli",
+  "role": "Senior QA | QA Automation",
+  "contact": "Luque, Paraguay | +595 992 435 330 | jonbennettpy@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/jonathan-camelli/",
+  "portfolio": "https://j0nbennett.github.io/portafolio-web/en/",
+  "profile": "Senior QA Analyst with experience in software testing and automation for web and mobile applications in financial services. Previous software development experience with Oracle APEX, PL/SQL and JavaScript. Knowledge of requirements analysis, databases and API validation tools. Focused on product quality, team collaboration and process improvement.",
+  "skills": [
+    ["QA and automation", "Playwright, Katalon Studio, JMeter, Postman, SoapUI and TestLink. Testing of web applications, Android and iOS mobile apps, and POS terminals."],
+    ["Data and development", "Oracle Database, MySQL, PostgreSQL, DBeaver, PL/SQL, Oracle APEX, JavaScript and JasperReports."],
+    ["Delivery and technical environment", "Jira, Confluence, GitLab, Grafana, AS400, MobaXterm, PuTTY, Android Studio and Flutter."]
+  ],
+  "qa": [
+    {"title": "QA Analyst | ITAE / Solar Banco", "period": "September 2024 - Present | Asunción, Paraguay", "bullets": ["Test banking software and Android/iOS mobile applications.", "Use Playwright for test automation.", "Tools: Postman, Jira, Confluence, MySQL, PostgreSQL, DBeaver, GitLab, Grafana, Android Studio and Flutter."]},
+    {"title": "QA Analyst | Bancard", "period": "January 2024 - September 2024 | Asunción, Paraguay | Fixed-term contract", "bullets": ["Performed software testing, automation and POS terminal testing.", "Tools: JMeter, Postman, MySQL, Jira, Confluence, MobaXterm and AS400."]},
+    {"title": "QA Analyst | Banco Familiar", "period": "October 2022 - January 2024 | Asunción, Paraguay | Fixed-term contract", "bullets": ["Performed software testing and automation with JMeter, SoapUI, TestLink and Katalon Studio.", "Additional tools: Oracle Database, Jira, PuTTY and Microsoft 365."]}
+  ],
+  "aiSummary": "Implemented AI-assisted QA workflows using Codex, Jira Rovo and MCP integrations, connecting test-case definition, test execution and evidence recording.",
+  "aiBullets": ["Integrated Codex with Postman, and Postman with Jira; used Rovo to generate test cases.", "Created Playwright test specifications and executed them with Codex. Generated PDF evidence and published results as Jira comments.", "Validated issues through Atlassian MCP, consulted Swagger through another MCP when needed, and compared data to prepare API tests.", "Created Postman collections for manual execution and recorded results in the corresponding Jira issue.", "Created a runner to execute tests in GitLab."],
+  "development": {"title": "Software Developer | Kove S.A", "period": "December 2021 - January 2024 | Asunción, Paraguay", "bullets": ["Developed custom software, analysed requirements and designed solutions.", "Technologies: Oracle APEX, PL/SQL, JavaScript, Oracle Database and JasperReports.", "Resolved software issues and collaborated with the team, applying knowledge of quality assurance.", "Contributed to projects for Banco Familiar, Unimed, Compúpar, Wicomm, Yoga Fitness, Coarco, Revita, Bonus, Galena and Kove."]},
+  "additional": [
+    {"title": "Customer Service Representative | Voicenter", "period": "October 2019 - February 2022 | Asunción, Paraguay", "bullets": ["Provided customer service, resolved problems and managed conflicts."]},
+    {"title": "Consumer Credit Sales Representative | Universo", "period": "February 2019 - August 2019 | Asunción, Paraguay", "bullets": ["Sold financial products, negotiated with customers and provided customer support."]}
+  ],
+  "education": ["Bachelor's degree in Computer Science, emphasis in Information Systems (in progress)", "Universidad Autónoma de Asunción | 2021 - Present"],
+  "certifications": ["Oracle APEX Cloud Developer Certified Professional | Oracle | October 2025", "Oracle Certified Foundations Associate | Oracle | July 2023", "Oracle APEX Foundations | Oracle", "Advanced Software Testing | Udemy | July 2023", "Jira Fundamentals Badge and Confluence Fundamentals | Atlassian", "Oracle Database 11g | Fundación Proydesa", "Introduction to Cybersecurity | Cisco", "EF SET English Certificate | EF Standard English Test"],
+  "language": "English: B2 Upper Intermediate, certified through EF SET."
+}

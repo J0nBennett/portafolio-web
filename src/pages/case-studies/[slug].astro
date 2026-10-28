@@ -1,6 +1,10 @@
 ---
+import { getLocale, translator } from "../../utils/i18n";
 import { getCollection, render } from "astro:content";
 import DocLayout from "../../layouts/DocLayout.astro";
+
+const locale = getLocale(Astro.url.pathname);
+const t = translator(locale);
 
 export async function getStaticPaths() {
   const caseStudies = await getCollection("case-studies");
@@ -22,7 +26,7 @@ const { Content } = await render(caseStudy);
   image={caseStudy.data.thumbnail}
   sectionOgImage="/og/case-studies.png"
   backUrl="/case-studies"
-  backLabel="Volver a Estudios"
+  backLabel={t("Volver a Estudios")}
 >
   <Content />
 </DocLayout>

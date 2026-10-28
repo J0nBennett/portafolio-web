@@ -1,6 +1,10 @@
 ---
+import { getLocale, translator } from "../../utils/i18n";
 import { getCollection, render } from "astro:content";
 import DocLayout from "../../layouts/DocLayout.astro";
+
+const locale = getLocale(Astro.url.pathname);
+const t = translator(locale);
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -21,7 +25,7 @@ const { Content } = await render(post);
   date={post.data.date}
   sectionOgImage="/og/writing.png"
   backUrl="/writing"
-  backLabel="Volver a Blog"
+  backLabel={t("Volver a Blog")}
 >
   <Content />
 </DocLayout>

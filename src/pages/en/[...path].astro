@@ -1,0 +1,40 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Home from "../index.astro";
+import About from "../about.astro";
+import Contact from "../contact.astro";
+import Projects from "../projects/index.astro";
+import CaseStudies from "../case-studies/index.astro";
+import Writing from "../writing/index.astro";
+import DocLayout from "../../layouts/DocLayout.astro";
+
+export async function getStaticPaths() {
+  const staticRoutes = ["", "about", "contact", "projects", "case-studies", "writing"].map((route) => ({ params: { path: route || undefined }, props: { view: route || "home" } }));
+  const entries = [
+    ...(await getCollection("projects-en")).map((entry) => ({ params: { path: `projects/${entry.id}` }, props: { view: "entry", entry, section: "projects" } })),
+    ...(await getCollection("case-studies-en")).map((entry) => ({ params: { path: `case-studies/${entry.id}` }, props: { view: "entry", entry, section: "case-studies" } })),
+    ...(await getCollection("posts-en")).map((entry) => ({ params: { path: `writing/${entry.id}` }, props: { view: "entry", entry, section: "writing" } })),
+  ];
+  return [...staticRoutes, ...entries];
+}
+
+interface Props {
+  view: string;
+  section?: "projects" | "case-studies" | "writing";
+  entry?: CollectionEntry<"projects-en" | "case-studies-en" | "posts-en">;
+}
+const { view, entry, section } = Astro.props;
+const Content = entry ? (await render(entry)).Content : undefined;
+const backLabels = { projects: "Volver a Proyectos", "case-studies": "Volver a Estudios", writing: "Volver a Blog" };
+---
+{view === "home" && <Home />}
+{view === "about" && <About />}
+{view === "contact" && <Contact />}
+{view === "projects" && <Projects />}
+{view === "case-studies" && <CaseStudies />}
+{view === "writing" && <Writing />}
+{entry && Content && section && (
+  <DocLayout title={entry.data.title} summary={entry.data.summary} tags={entry.data.tags} date={entry.data.date} image={"thumbnail" in entry.data ? entry.data.thumbnail : undefined} sectionOgImage={`/og/${section}.png`} backUrl={`/${section}`} backLabel={backLabels[section]}>
+    <Content />
+  </DocLayout>
+)}

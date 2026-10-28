@@ -1,0 +1,27 @@
+{
+  "siteName": "Jonathan Camelli | Portfolio",
+  "description": "Jonathan Camelli's technical portfolio. Senior QA Analyst focused on software quality, automation, AI and Oracle APEX.",
+  "baseUrl": "https://j0nbennett.github.io/portafolio-web",
+  "author": "Jonathan Camelli", "location": "Luque, Paraguay", "roles": ["Senior QA / QA Automation", "Oracle APEX Developer", "AI-assisted QA"],
+  "focusAreas": ["AI-assisted Testing", "QA Automation & Architecture", "Oracle APEX / PL/SQL", "CI/CD Pipelines"],
+  "tagline": "Web, mobile and API testing with Playwright, Postman and AI integrated into the QA workflow.", "email": "jonbennettpy@gmail.com",
+  "home": {
+    "primaryCta": {"label": "Explore projects", "href": "/projects"}, "secondaryCta": {"label": "About me", "href": "/about"},
+    "differentiators": ["Web and mobile testing in financial services with Playwright and Postman.", "Previous development experience with Oracle APEX, PL/SQL and JavaScript.", "Codex, Rovo and MCP integrations with Postman and Jira.", "PDF test evidence, results recorded in Jira and test execution in GitLab."],
+    "highlights": [{"label": "Web testing", "value": "Playwright"}, {"label": "API testing", "value": "Postman"}, {"label": "AI-assisted QA", "value": "Codex + Rovo"}, {"label": "Automated execution", "value": "GitLab"}],
+    "cvCta": {"label": "Download English CV", "href": "/cv-en.pdf"}
+  },
+  "about": {
+    "bio": "I am a Senior QA Analyst with experience testing web applications, mobile apps and APIs in financial services. I have worked at ITAE / Solar Banco since September 2024, with previous development experience in Oracle APEX, PL/SQL and JavaScript. I integrate automation and AI into the QA workflow.",
+    "problemsSolved": "I connect test cases, execution and evidence to Jira issues. I use Playwright for web applications and Postman for APIs, comparing data and consulting Swagger specifications when needed.",
+    "engineeringApproach": "I use Rovo to generate test cases and Codex to execute Playwright specifications and prepare Postman collections. I integrate these workflows through MCP, generate PDF evidence and record results in Jira. I also created a runner to execute tests in GitLab.",
+    "values": ["Quality by design", "Intelligent automation", "AI-assisted productivity", "Technical transparency", "Data-informed continuous improvement"],
+    "timeline": [
+      {"period": "Sep 2024 - Present", "title": "QA Analyst | ITAE - Solar Banco", "summary": "Web and Android/iOS mobile testing in banking, Playwright automation and API validation with Postman."},
+      {"period": "Jan 2024 - Sep 2024", "title": "QA Analyst | Bancard", "summary": "Software testing and automation with JMeter and Postman; POS terminal testing and work with MySQL and AS400."},
+      {"period": "Oct 2022 - Jan 2024", "title": "QA Analyst | Banco Familiar", "summary": "Software testing and automation with JMeter, SoapUI, TestLink and Katalon Studio in banking."},
+      {"period": "Dec 2021 - Jan 2024", "title": "Software Developer | Kove S.A", "summary": "Custom software development, requirements analysis and solutions built with Oracle APEX, PL/SQL, JavaScript and JasperReports."}
+    ],
+    "education": {"title": "Education and languages", "degree": "Bachelor's degree in Computer Science, emphasis in Information Systems (in progress)", "institution": "Universidad Autónoma de Asunción | 2021 - Present", "language": "English B2 Upper Intermediate | EF SET", "certifications": ["Oracle APEX Cloud Developer Certified Professional | October 2025", "Oracle Certified Foundations Associate | July 2023", "Advanced Software Testing | Udemy | July 2023"]}
+  }
+}

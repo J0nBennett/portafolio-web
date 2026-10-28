@@ -44,4 +44,7 @@ export const collections = {
   projects,
   "case-studies": caseStudies,
   posts,
+  "projects-en": defineCollection({ ...projects, type: "content_layer", loader: glob({ pattern: "**/*.mdx", base: "./src/content/en/projects" }) }),
+  "case-studies-en": defineCollection({ ...caseStudies, type: "content_layer", loader: glob({ pattern: "**/*.mdx", base: "./src/content/en/case-studies" }) }),
+  "posts-en": defineCollection({ ...posts, type: "content_layer", loader: glob({ pattern: "**/*.mdx", base: "./src/content/en/posts" }) }),
 };

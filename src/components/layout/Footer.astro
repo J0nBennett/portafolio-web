@@ -1,8 +1,12 @@
 ---
+import { getLocale, translator, getSite, localizedPath } from "../../utils/i18n";
 import Container from "./Container.astro";
 import socials from "../../data/socials.json";
-import site from "../../data/site.json";
-import { withBasePath } from "../../utils/url";
+
+const locale = getLocale(Astro.url.pathname);
+const t = translator(locale);
+const site = getSite(locale);
+const withBasePath = (value: string, base = import.meta.env.BASE_URL) => localizedPath(value, locale, base);
 const basePath = import.meta.env.BASE_URL;
 ---
 
@@ -14,8 +18,8 @@ const basePath = import.meta.env.BASE_URL;
     <!-- Mini CTA -->
     <div class="scroll-reveal mb-10 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8">
       <div>
-        <p class="text-lg font-bold text-[var(--text-heading)]">¿Trabajemos juntos?</p>
-        <p class="mt-1 text-sm text-[var(--muted)]">Siempre abierto a conversaciones sobre calidad, automatización e IA.</p>
+        <p class="text-lg font-bold text-[var(--text-heading)]">{t("¿Trabajemos juntos?")}</p>
+        <p class="mt-1 text-sm text-[var(--muted)]">{t("Siempre abierto a conversaciones sobre calidad, automatización e IA.")}</p>
       </div>
       <div class="flex items-center gap-3">
         <a
@@ -27,13 +31,13 @@ const basePath = import.meta.env.BASE_URL;
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          CV
+          {t("CV")}
         </a>
         <a
           href={withBasePath("/contact", basePath)}
           class="focus-ring shimmer inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:shadow-cyan-500/30 hover:scale-[1.02]"
         >
-          Contactar
+          {t("Contactar")}
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
           </svg>
@@ -45,8 +49,8 @@ const basePath = import.meta.env.BASE_URL;
     <div class="flex flex-col gap-6 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
       <div class="flex flex-col gap-1">
         <p class="font-medium text-[var(--text-heading)]">{site.author}</p>
-        <p>&copy; {new Date().getFullYear()} Todos los derechos reservados.</p>
-        <p class="mt-1 text-xs italic text-[var(--muted)]/60">"La calidad no se prueba al final, se diseña desde el inicio."</p>
+        <p>&copy; {new Date().getFullYear()} {t("Todos los derechos reservados.")}</p>
+        <p class="mt-1 text-xs italic text-[var(--muted)]/60">{t("\"La calidad no se prueba al final, se diseña desde el inicio.\"")}</p>
       </div>
       <ul class="flex items-center gap-3 flex-wrap">
         {
